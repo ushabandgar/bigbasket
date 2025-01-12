@@ -7,8 +7,6 @@ import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
 
 public class ProductDetailTests extends TestBase{
-	Keyword keyword = new Keyword();
-
 	@Test
 	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTabUisngFactory() {
 		HomePage homePage = new HomePage();
@@ -56,6 +54,7 @@ public class ProductDetailTests extends TestBase{
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();
+		Keyword keyword=new Keyword();
 		keyword.print("verify Page loaded successfully! product image visible.");
 	}
 	

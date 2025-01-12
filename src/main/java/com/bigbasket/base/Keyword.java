@@ -41,38 +41,18 @@ public class Keyword {
 	public void launchUrl(String url) {
 		driver.get(url);
 	}
-
-	public WebElement getWebElement(String locator) {
-
-		String locatorType = locator.split("##")[0];
-		locator = locator.split("##")[1];
-
-		if (locatorType.equalsIgnoreCase("id")) {
-			return driver.findElement(By.id(locator));
-		} else if (locatorType.equalsIgnoreCase("name")) {
-			return driver.findElement(By.name(locator));
-		} else if (locatorType.equalsIgnoreCase("xpath")) {
-			return driver.findElement(By.xpath(locator));
-		} else if (locatorType.equalsIgnoreCase("linktext")) {
-			return driver.findElement(By.linkText(locator));
-		} else if (locatorType.equalsIgnoreCase("partial")) {
-			return driver.findElement(By.partialLinkText(locator));
-		} else if (locatorType.equalsIgnoreCase("css")) {
-			return driver.findElement(By.cssSelector(locator));
-		} else if (locatorType.equalsIgnoreCase("classname")) {
-			return driver.findElement(By.className(locator));
-		} else
-			return null;
-
-	}
-
 	public void clickOn(WebElement element) {
 		element.click();
 	}
 
 	public void closeBrowser() {
+		driver.close();
+	}
+	
+	public void quitBrowser() {
 		driver.quit();
 	}
+
 
 	public void maximizeBrowser() {
 		driver.manage().window().maximize();
@@ -143,6 +123,30 @@ public class Keyword {
 			return driver.findElements(By.className(locator));
 		} else
 			return null;
+	}
+	
+	public WebElement getWebElement(String locator) {
+
+		String locatorType = locator.split("##")[0];
+		locator = locator.split("##")[1];
+
+		if (locatorType.equalsIgnoreCase("id")) {
+			return driver.findElement(By.id(locator));
+		} else if (locatorType.equalsIgnoreCase("name")) {
+			return driver.findElement(By.name(locator));
+		} else if (locatorType.equalsIgnoreCase("xpath")) {
+			return driver.findElement(By.xpath(locator));
+		} else if (locatorType.equalsIgnoreCase("linktext")) {
+			return driver.findElement(By.linkText(locator));
+		} else if (locatorType.equalsIgnoreCase("partial")) {
+			return driver.findElement(By.partialLinkText(locator));
+		} else if (locatorType.equalsIgnoreCase("css")) {
+			return driver.findElement(By.cssSelector(locator));
+		} else if (locatorType.equalsIgnoreCase("classname")) {
+			return driver.findElement(By.className(locator));
+		} else
+			return null;
+
 	}
 
 	public List<String> getExpectedCategoryNames() {
