@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class BB {
 @Test
- public void mynam() {
+ public void myname() {
 	System.out.println("Roshani Sonawane");
 
 }
