@@ -4,7 +4,7 @@ import static org.testng.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.bigbasket.base.WaitFor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -17,6 +17,7 @@ import com.bigbasket.base.Keyword;
 
 public class HomePage {
 	Keyword keyword=new Keyword();
+	
 	@FindBy(css="button[id*='headlessui-menu-button-:R5bab6:']")
 	WebElement shopByCategoryMenu;
 	
@@ -29,12 +30,16 @@ public class HomePage {
 	@FindBy(xpath = "//li[@class=\"QuickSearch___StyledMenuItem-sc-rtz2vl-4 ibNDA-d\"]")
 	List<WebElement> results;
 
+	@FindBy(css = "div.Header___StyledQuickSearch2-sc-19kl9m3-0 input.flex-1")
+	WebElement searchText;
+	
+	public HomePage() {
+		PageFactory.initElements(Keyword.driver, this);
+	}
+	
 	
 	public void verifyShopByCategoryMenuIsAvailable() {
 		Assert.assertTrue(shopByCategoryMenu.isDisplayed());
-	}
-	public HomePage() {
-		PageFactory.initElements(Keyword.driver, this);
 	}
 	
 	public void verifyAllCatgoriesOfShopByCatogoryAreDisplayedProperly() {
@@ -70,9 +75,6 @@ public class HomePage {
 
 	}
 
-	public HomePageUsingPageFactory() {
-		PageFactory.initElements(Keyword.driver, this);
-	}
 
 	public void enterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
 		String value = SearchTextBox.getAttribute("value");
@@ -105,6 +107,27 @@ public class HomePage {
 		Assert.assertEquals(urlBefore, urlAfter);
 
 	}
+	
+	 public void clickOnSearchText() {
+		 WaitFor.visibilityOfElement(searchText);
+	    	searchText.click();
+	    	System.out.println("Clicked on search text field.");
+	    }
+	    
+	    public void sendProductName() {
+			searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
+			searchText.sendKeys(Keys.ENTER);
+			WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
+
+		}
+	    
+	    public void verifyUrlAfterSearch() {
+			String currentURL = Keyword.driver.getCurrentUrl();
+			keyword.print("Current URL: " + currentURL);
+			assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
+
+		}
+	    
 }
 
-}
+
