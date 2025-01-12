@@ -60,4 +60,10 @@ public class ProductDetailTests {
 		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();
 		keyword.print("verify Page loaded successfully! product image visible.");
 	}
+	
+	@Test
+	public void Testmethod1() {
+		System.out.println("Test method");
+
+	}
 }
