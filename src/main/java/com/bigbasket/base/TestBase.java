@@ -9,12 +9,13 @@ public class TestBase {
 	
 	@BeforeMethod
 	public void setUp() {
-		keyword.openBrowser("firefox");
+		keyword.openBrowser("chrome");
 		keyword.launchUrl("https://www.bigbasket.com/");
+		keyword.maximizeBrowser();
 	}
 	
 	@AfterMethod
 	public void tearDown() {
-		keyword.closeBrowser();
+		keyword.closeBrowser();;
 	}
 }

@@ -1,6 +1,4 @@
 package com.bigbasket.base;
-
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -9,28 +7,34 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.Optional;
 
 public class Keyword {
 
 	public static RemoteWebDriver driver;
 
-	public void openBrowser(String browserName) {
-		if (browserName.equalsIgnoreCase("chrome")) {
+	public void openBrowser(@Optional String browserName) {
+		if (browserName == null) {
+			System.out.println("Launching Chrome by default");
 			driver = new ChromeDriver();
-		} else if (browserName.equalsIgnoreCase("firefox")) {
+		} else if (browserName.equalsIgnoreCase("Chrome")) {
+			driver = new ChromeDriver();
+		} else if (browserName.equalsIgnoreCase("Firefox")) {
 			driver = new FirefoxDriver();
-		} else if (browserName.equalsIgnoreCase("safari")) {
+		} else if (browserName.equalsIgnoreCase("Safari")) {
 			driver = new SafariDriver();
-		} else if (browserName.equalsIgnoreCase("internet")) {
-			driver = new InternetExplorerDriver();
+		} else if (browserName.equalsIgnoreCase("edge")) {
+			driver = new EdgeDriver();
 		} else {
 			System.out.println("Invalid browser name");
 		}
-		System.out.println("Launched browser: " + browserName);
+
+		System.out.println("Launched " + browserName + " browser");
 
 	}
 
