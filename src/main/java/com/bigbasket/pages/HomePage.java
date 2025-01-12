@@ -58,7 +58,7 @@ public class HomePage {
 		softlyAssert.assertAll();		
 	}
 	
-	public void SearchTextBoxVisibleOrNotUsingPagefactory() {
+	public void verifySearchTextBoxVisibleOrNotUsing() {
 		System.out.println(SearchTextBox.isDisplayed());
 		Assert.assertTrue(SearchTextBox.isDisplayed());
 
@@ -70,11 +70,7 @@ public class HomePage {
 
 	}
 
-	public HomePageUsingPageFactory() {
-		PageFactory.initElements(Keyword.driver, this);
-	}
-
-	public void enterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
+	public void verifyEnterTextPlaceholderTextIsEmpty() {
 		String value = SearchTextBox.getAttribute("value");
 		SearchTextBox.sendKeys("Apple");
 		String value1 = SearchTextBox.getAttribute("value");
@@ -82,8 +78,8 @@ public class HomePage {
 
 	}
 
-	public void RelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
-		SearchTextBox.sendKeys("Tomato");
+	public void verifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
+		SearchTextBox.sendKeys("Tomato")
 		Thread.sleep(3000);
 		System.out.println(results.size());
 		for (WebElement result : results) {
@@ -107,4 +103,4 @@ public class HomePage {
 	}
 }
 
-}
+
