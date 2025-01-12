@@ -70,9 +70,7 @@ public class HomePage {
 
 	}
 
-	public HomePageUsingPageFactory() {
-		PageFactory.initElements(Keyword.driver, this);
-	}
+	
 
 	public void enterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
 		String value = SearchTextBox.getAttribute("value");
@@ -105,6 +103,6 @@ public class HomePage {
 		Assert.assertEquals(urlBefore, urlAfter);
 
 	}
-}
+
 
 }
