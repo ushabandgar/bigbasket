@@ -3,8 +3,10 @@ package com.bigbasket.base;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -68,6 +70,54 @@ public class Keyword {
 		driver.quit();
 	}
 
+	public void maximizeBrowser() {
+		driver.manage().window().maximize();
+
+	}
+	
+	public void print(String string) {
+		System.out.println(string);
+
+	}
+	
+	// it take webelement and text
+		public void sendkeys(WebElement element, String text) {
+			element.sendKeys(text);
+		}
+
+		public void sendKeys(WebElement element, Keys enter) {
+			element.sendKeys(enter);
+
+		}
+		
+		
+		
+
+
+		public void switchToChildWindowHandle() {
+			Set<String> allWindows = driver.getWindowHandles();
+			String parentWindow = driver.getWindowHandle();
+			for (String handle : allWindows) {
+				if (!handle.equals(parentWindow)) {
+					driver.switchTo().window(handle);
+					break;
+				}
+			}
+		}
+
+		public void switchToWindowByTitle(String expectedTitleSubstring) {
+			Set<String> allWindows = driver.getWindowHandles();
+			for (String handle : allWindows) {
+				String currentTitle = driver.switchTo().window(handle).getTitle();
+				if (currentTitle.contains(expectedTitleSubstring)) {
+					System.out.println("Switched to window with title: " + currentTitle);
+					break;
+				}
+			}
+		}
+		
+		
+		
 
 	public List<WebElement> getWebElements(String locator) {
 		String locatorType = locator.split("##")[0];

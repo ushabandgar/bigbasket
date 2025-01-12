@@ -2,12 +2,11 @@ package bigbasketTests;
 
 import org.testng.annotations.Test;
 
-import com.pages.HomePageUsingPageFactory;
-
+import com.bigbasket.pages.HomePage;
 public class SearchProductTests {
 	@Test
 	public void verifySearchTextBoxVisibleOrNotUsingPagefactory() {
-		HomePageUsingPageFactory page = new HomePageUsingPageFactory();
+		HomePage page = new HomePage();
 		page.SearchTextBoxVisibleOrNotUsingPagefactory();
 		
 	}
@@ -16,7 +15,7 @@ public class SearchProductTests {
 
 	@Test
 	public void verifyUserCanEnterTextIntoTxtBoxpageFactory() {
-		HomePageUsingPageFactory page = new HomePageUsingPageFactory();
+		HomePage page = new HomePage();
 		page.sendKeysToElement();
 
 	}
@@ -25,7 +24,7 @@ public class SearchProductTests {
 
 	@Test
 	public void verifyEnterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
-		HomePageUsingPageFactory page = new HomePageUsingPageFactory();
+		HomePage page = new HomePage();
 		page.enterTextPlaceholderTextIsEmptyUsingPgaeFactory();
 
 	}
@@ -34,14 +33,14 @@ public class SearchProductTests {
 
 	@Test
 	public void verifyRelevantResultIsDispalyedWhenEnterTextUsingPageFactory() throws InterruptedException {
-		HomePageUsingPageFactory page = new HomePageUsingPageFactory();
+		HomePage page = new HomePage();
 		page.RelevantResultIsDispalyedWhenEnterText();
 
 	}
 	//5 TEST CASE
 	@Test
 	 public void verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnterUsingPageFactory(){
-			HomePageUsingPageFactory page = new HomePageUsingPageFactory();
+		HomePage page = new HomePage();
 			page.verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnter();
 
 	}
