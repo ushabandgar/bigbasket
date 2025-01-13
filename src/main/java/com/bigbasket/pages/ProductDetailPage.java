@@ -1,6 +1,8 @@
 package com.bigbasket.pages;
 
+
 import static org.testng.Assert.assertTrue;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,11 +11,13 @@ import com.bigbasket.base.*;
 
 public class ProductDetailPage {
 	Keyword keyword = new Keyword();
+	
 	@FindBy(css="section.Image___StyledSection-sc-1nc1erg-0")
 	WebElement productImage;
 	
 	
 	public ProductDetailPage() {
+		
 		PageFactory.initElements(Keyword.driver, this);
 	}
 	
