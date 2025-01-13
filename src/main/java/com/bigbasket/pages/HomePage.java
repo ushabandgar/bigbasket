@@ -58,13 +58,13 @@ public class HomePage {
 		softlyAssert.assertAll();		
 	}
 	
-	public void verifySearchTextBoxVisibleOrNotUsing() {
+	public void verifySearchTextBoxVisibleOrNot() {
 		System.out.println(SearchTextBox.isDisplayed());
 		Assert.assertTrue(SearchTextBox.isDisplayed());
 
 	}
 
-	public void sendKeysToElement() {
+	public void  verifyUserCanAbleToTypeTexIntoSearchbar() {
 		SearchTextBox.sendKeys("Apple");
 		Assert.assertEquals(SearchTextBox.getAttribute("value"), "Apple");
 
@@ -79,7 +79,7 @@ public class HomePage {
 	}
 
 	public void verifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
-		SearchTextBox.sendKeys("Tomato")
+		SearchTextBox.sendKeys("Tomato");
 		Thread.sleep(3000);
 		System.out.println(results.size());
 		for (WebElement result : results) {
