@@ -1,18 +1,15 @@
 package bigbasketTests;
-
 import org.testng.annotations.Test;
-
 import com.bigbasket.base.*;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
 
-
 public class ProductDetailTests {
 	Keyword keyword = new Keyword();
 
 	@Test
-	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTabUisngFactory() {
+	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() {
 		HomePage homePageFactory = new HomePage();
 		homePageFactory.clickOnSearchText();
 		homePageFactory.sendProductName();
@@ -20,7 +17,20 @@ public class ProductDetailTests {
 	}
 
 	@Test
-	public void verifyWhenUserClickOnProductThenProductUrlTitleChangedUsingFactory() {
+	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() {
+		HomePage homePageFactory = new HomePage();
+		homePageFactory.clickOnSearchText();
+		homePageFactory.sendProductName();
+		homePageFactory.verifyUrlAfterSearch();
+		ProductSearchPage productSearchPage = new ProductSearchPage();
+		productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
+		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
+	}
+
+	@Test
+	public void verifyWhenUserClickOnProductThenProductPageURlchanged() {
 		HomePage homePageFactory = new HomePage();
 		homePageFactory.clickOnSearchText();
 		homePageFactory.sendProductName();
@@ -33,21 +43,7 @@ public class ProductDetailTests {
 	}
 
 	@Test
-	public void verifyWhenUserClickOnProductThenProductPageURlchangedUsingFactory() {
-		HomePage homePageFactory = new HomePage();
-		homePageFactory.clickOnSearchText();
-		homePageFactory.sendProductName();
-		homePageFactory.verifyUrlAfterSearch();
-		ProductSearchPage productSearchPage = new ProductSearchPage();
-		productSearchPage.clickOnProduct();
-		productSearchPage.switchDriverOnProductSearchPage();
-		ProductDetailPage productDetailPage = new ProductDetailPage();
-		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
-
-	}
-
-	@Test
-	public void verifyWhenUserClickOnProductThenProductUrlFullyLoadedUsingFactory() {
+	public void verifyWhenUserClickOnProductThenProductUrlLoadFully() {
 		HomePage homePageFactory = new HomePage();
 		homePageFactory.clickOnSearchText();
 		homePageFactory.sendProductName();
