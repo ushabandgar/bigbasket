@@ -8,7 +8,7 @@ import com.bigbasket.pages.ProductSearchPage;
 
 public class ProductDetailTests extends TestBase{
 	@Test
-	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTabUisngFactory() {
+	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -16,20 +16,7 @@ public class ProductDetailTests extends TestBase{
 	}
 
 	@Test
-	public void verifyWhenUserClickOnProductThenProductUrlTitleChangedUsingFactory() {
-		HomePage homePage = new HomePage();
-		homePage.clickOnSearchText();
-		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
-		ProductSearchPage productSearchPage = new ProductSearchPage();
-		productSearchPage.clickOnProduct();
-		productSearchPage.switchDriverOnProductSearchPage();
-		ProductDetailPage productDetailPage = new ProductDetailPage();
-		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
-	}
-
-	@Test
-	public void verifyWhenUserClickOnProductThenProductPageURlchangedUsingFactory() {
+	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -39,11 +26,24 @@ public class ProductDetailTests extends TestBase{
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
+	}
+
+	@Test
+	public void verifyWhenUserClickOnProductThenProductPageURlchanged() {
+		HomePage homePage = new HomePage();
+		homePage.clickOnSearchText();
+		homePage.sendProductName();
+		homePage.verifyUrlAfterSearch();
+		ProductSearchPage productSearchPage = new ProductSearchPage();
+		productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
+		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
 
 	}
 
 	@Test
-	public void verifyWhenUserClickOnProductThenProductUrlFullyLoadedUsingFactory() {
+	public void verifyWhenUserClickOnProductThenProductUrlFullyLoaded() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
