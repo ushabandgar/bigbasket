@@ -16,14 +16,14 @@ import org.testng.asserts.SoftAssert;
 import com.bigbasket.base.Keyword;
 
 public class HomePage {
-	Keyword keyword=new Keyword();
-	
-	@FindBy(css="button[id*='headlessui-menu-button-:R5bab6:']")
+	Keyword keyword = new Keyword();
+
+	@FindBy(css = "button[id*='headlessui-menu-button-:R5bab6:']")
 	WebElement shopByCategoryMenu;
-	
-	@FindBy(xpath="//li[@class=\"jsx-1259984711\" and @role=\"none\"]")
+
+	@FindBy(xpath = "//li[@class=\"jsx-1259984711\" and @role=\"none\"]")
 	List<WebElement> categoryList;
-	
+
 	@FindBy(xpath = "(//input[@placeholder=\"Search for Products...\"])[2]")
 	WebElement SearchTextBox;
 
@@ -32,16 +32,15 @@ public class HomePage {
 
 	@FindBy(css = "div.Header___StyledQuickSearch2-sc-19kl9m3-0 input.flex-1")
 	WebElement searchText;
-	
+
 	public HomePage() {
 		PageFactory.initElements(Keyword.driver, this);
 	}
-	
-	
+
 	public void verifyShopByCategoryMenuIsAvailable() {
 		Assert.assertTrue(shopByCategoryMenu.isDisplayed());
 	}
-	
+
 	public void verifyAllCatgoriesOfShopByCatogoryAreDisplayedProperly() {
 		keyword.clickOn(shopByCategoryMenu);
 		SoftAssert softlyAssert = new SoftAssert();
@@ -49,34 +48,31 @@ public class HomePage {
 			Assert.assertTrue(category.isDisplayed());
 		}
 		softlyAssert.assertAll();
-		}
-	
+	}
+
 	public void verifyAllCatgoriesOfShopByCatogoryNamesAreDisplayedProperly() {
 		keyword.clickOn(shopByCategoryMenu);
-		List<String> expectedCategoryNames=keyword.getExpectedCategoryNames();	
-		ArrayList<String> actualCategoryNames=new ArrayList<String>();
+		List<String> expectedCategoryNames = keyword.getExpectedCategoryNames();
+		ArrayList<String> actualCategoryNames = new ArrayList<String>();
 		SoftAssert softlyAssert = new SoftAssert();
 		for (WebElement category : categoryList) {
 			actualCategoryNames.add(category.getText());
 		}
 		softlyAssert.assertEquals(actualCategoryNames, expectedCategoryNames);
-		softlyAssert.assertAll();		
+		softlyAssert.assertAll();
 	}
-	
-	public void SearchTextBoxVisibleOrNotUsingPagefactory() {
-		System.out.println(SearchTextBox.isDisplayed());
+
+	public void verifySearchTextBoxVisibleOrNot() {
 		Assert.assertTrue(SearchTextBox.isDisplayed());
 
 	}
-
-	public void sendKeysToElement() {
+	public void verifyUserCanAbleToTextIntoSearchTextBox() {
 		SearchTextBox.sendKeys("Apple");
 		Assert.assertEquals(SearchTextBox.getAttribute("value"), "Apple");
 
 	}
 
-
-	public void enterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
+	public void verifyEnterTextWhenPlaceholderTextIsEmpty() {
 		String value = SearchTextBox.getAttribute("value");
 		SearchTextBox.sendKeys("Apple");
 		String value1 = SearchTextBox.getAttribute("value");
@@ -84,7 +80,7 @@ public class HomePage {
 
 	}
 
-	public void RelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
+	public void VerifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
 		SearchTextBox.sendKeys("Tomato");
 		Thread.sleep(3000);
 		System.out.println(results.size());
@@ -107,27 +103,25 @@ public class HomePage {
 		Assert.assertEquals(urlBefore, urlAfter);
 
 	}
-	
-	 public void clickOnSearchText() {
-		 WaitFor.visibilityOfElement(searchText);
-	    	searchText.click();
-	    	System.out.println("Clicked on search text field.");
-	    }
-	    
-	    public void sendProductName() {
-			searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
-			searchText.sendKeys(Keys.ENTER);
-			WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
 
-		}
-	    
-	    public void verifyUrlAfterSearch() {
-			String currentURL = Keyword.driver.getCurrentUrl();
-			keyword.print("Current URL: " + currentURL);
-			assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
+	public void clickOnSearchText() {
+		WaitFor.visibilityOfElement(searchText);
+		searchText.click();
+		System.out.println("Clicked on search text field.");
+	}
 
-		}
-	    
+	public void sendProductName() {
+		searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
+		searchText.sendKeys(Keys.ENTER);
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
+
+	}
+
+	public void verifyUrlAfterSearch() {
+		String currentURL = Keyword.driver.getCurrentUrl();
+		keyword.print("Current URL: " + currentURL);
+		assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
+
+	}
+
 }
-
-
