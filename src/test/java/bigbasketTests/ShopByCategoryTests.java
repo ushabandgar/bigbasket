@@ -26,4 +26,9 @@ public class ShopByCategoryTests extends TestBase{
 		homepage.verifyAllCatgoriesOfShopByCatogoryNamesAreDisplayedProperly();
 		
 	}
+	@Test
+	public void testMethod() {
+		System.out.println("test method");
+	}
+	
 }
