@@ -9,11 +9,18 @@ import com.bigbasket.base.*;
 
 public class ProductDetailPage {
 	Keyword keyword = new Keyword();
+	
 	@FindBy(css="section.Image___StyledSection-sc-1nc1erg-0")
 	WebElement productImage;
 	
+	@FindBy(css="h1.Description___StyledH-sc-82a36a-2")
+	WebElement expectedProductTitleText;
+	
+	@FindBy(css="td.fLZywG")
+	WebElement expectedproductprice;
 	
 	public ProductDetailPage() {
+		
 		PageFactory.initElements(Keyword.driver, this);
 	}
 	
@@ -41,7 +48,29 @@ public class ProductDetailPage {
 		WaitFor.visibilityOfElement(productImage);
 		assertTrue(productImage.isDisplayed(),
 				"Product image is not displayed, page might not be fully loaded.");
-		System.out.println("Click on product image");
+		System.out.println("Checked a product image loading.");
 
 	}
+
+	public void getexpectedProductDetailTitleText() {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		System.out.println("Expected Product Title: " +expectedProductTitleText.getText());
+		
+	}
+
+	public void verifyActualAndExpectedProductText() {
+	assertTrue(expectedProductTitleText.getText().contains("Taaza Milk"), "Expected product title does not contain 'Taaza Milk'");
+
+	}
+
+	public void getExpectedProductDetailPagePrice() {
+        WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");    
+        System.out.println("Actual Product Title: " +expectedproductprice.getText());
+    }
+
+	public void verifyActualAndExpectedProductPrice() {
+     assertTrue(expectedproductprice.getText().contains("₹56"), "Price not match!");
+		
+	}
+
 }

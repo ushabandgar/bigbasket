@@ -1,10 +1,13 @@
 package com.bigbasket.base;
 import java.time.Duration;
 import java.util.NoSuchElementException;
+
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 public class WaitFor {
 	public static FluentWait<WebDriver> wait;
 
@@ -20,14 +23,18 @@ public class WaitFor {
 	}
 	
 	public static void visibilityOfElement(WebElement element) {
-	
-		wait.until(ExpectedConditions.visibilityOf(element));
-	}
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+        } catch (StaleElementReferenceException e) {
+           
+            wait.until(ExpectedConditions.visibilityOf(element));
+        }
+    }
+
 
 	public static void untilUrlLoad(String url) {
+		 WebDriverWait wait = new WebDriverWait(Keyword.driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.urlContains(url));
 
 	}
-	
-
 }
