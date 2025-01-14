@@ -73,10 +73,6 @@ public class Keyword {
 			element.sendKeys(enter);
 
 		}
-		
-		
-		
-
 
 		public void switchToChildWindowHandle() {
 			Set<String> allWindows = driver.getWindowHandles();
@@ -175,4 +171,6 @@ public class Keyword {
 				"Speakers & Microphones");	
 		return expectedCategories;
 	}
+
+	
 }

@@ -1,8 +1,6 @@
 package com.bigbasket.pages;
 
-
 import static org.testng.Assert.assertTrue;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -15,6 +13,11 @@ public class ProductDetailPage {
 	@FindBy(css="section.Image___StyledSection-sc-1nc1erg-0")
 	WebElement productImage;
 	
+	@FindBy(css="h1.Description___StyledH-sc-82a36a-2")
+	WebElement expectedProductTitleText;
+	
+	@FindBy(css="td.fLZywG")
+	WebElement expectedproductprice;
 	
 	public ProductDetailPage() {
 		
@@ -45,7 +48,29 @@ public class ProductDetailPage {
 		WaitFor.visibilityOfElement(productImage);
 		assertTrue(productImage.isDisplayed(),
 				"Product image is not displayed, page might not be fully loaded.");
-		System.out.println("Click on product image");
+		System.out.println("Checked a product image loading.");
 
 	}
+
+	public void getexpectedProductDetailTitleText() {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		System.out.println("Expected Product Title: " +expectedProductTitleText.getText());
+		
+	}
+
+	public void verifyActualAndExpectedProductText() {
+	assertTrue(expectedProductTitleText.getText().contains("Taaza Milk"), "Expected product title does not contain 'Taaza Milk'");
+
+	}
+
+	public void getExpectedProductDetailPagePrice() {
+        WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");    
+        System.out.println("Actual Product Title: " +expectedproductprice.getText());
+    }
+
+	public void verifyActualAndExpectedProductPrice() {
+     assertTrue(expectedproductprice.getText().contains("₹56"), "Price not match!");
+		
+	}
+
 }
