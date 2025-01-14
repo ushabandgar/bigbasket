@@ -2,12 +2,16 @@ package com.bigbasket.pages;
 
 import static org.testng.Assert.assertTrue;
 
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import com.bigbasket.base.WaitFor;
-import org.openqa.selenium.By;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -38,7 +42,11 @@ public class HomePage {
 	}
 
 	public void verifyShopByCategoryMenuIsAvailable() {
-		Assert.assertTrue(shopByCategoryMenu.isDisplayed());
+		String expectedShopByCategoryMenuName = "Shop by";
+		String actualShopByCategoryMenuName = shopByCategoryMenu.getText();
+		if (shopByCategoryMenu.isDisplayed()) {
+			Assert.assertTrue(actualShopByCategoryMenuName.contains(expectedShopByCategoryMenuName));
+		}
 	}
 
 	public void verifyAllCatgoriesOfShopByCatogoryAreDisplayedProperly() {
@@ -47,6 +55,7 @@ public class HomePage {
 		for (WebElement category : categoryList) {
 			Assert.assertTrue(category.isDisplayed());
 		}
+
 		softlyAssert.assertAll();
 	}
 
@@ -62,7 +71,12 @@ public class HomePage {
 		softlyAssert.assertAll();
 	}
 
+<<<<<<< HEAD
+	public void SearchTextBoxVisibleOrNotUsingPagefactory() {
+		System.out.println(SearchTextBox.isDisplayed());
+=======
 	public void verifySearchTextBoxVisibleOrNot() {
+>>>>>>> f74725c8bc0b3db7c8a29ab5ca93fd60e3a3db52
 		Assert.assertTrue(SearchTextBox.isDisplayed());
 
 	}
@@ -72,7 +86,11 @@ public class HomePage {
 
 	}
 
+<<<<<<< HEAD
+	public void enterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
+=======
 	public void verifyEnterTextWhenPlaceholderTextIsEmpty() {
+>>>>>>> f74725c8bc0b3db7c8a29ab5ca93fd60e3a3db52
 		String value = SearchTextBox.getAttribute("value");
 		SearchTextBox.sendKeys("Apple");
 		String value1 = SearchTextBox.getAttribute("value");
@@ -116,6 +134,7 @@ public class HomePage {
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
 
 	}
+<<<<<<< HEAD
 
 	public void verifyUrlAfterSearch() {
 		String currentURL = Keyword.driver.getCurrentUrl();
@@ -124,4 +143,37 @@ public class HomePage {
 
 	}
 
+	public void verifyShopByCategoryCollapsesOnClickAfterExapands() {
+		keyword.clickOn(shopByCategoryMenu);
+		String classNameAfterExapnd = shopByCategoryMenu.getAttribute("class");
+		keyword.clickOn(shopByCategoryMenu);
+		String classNameAfterCollapse = shopByCategoryMenu.getAttribute("class");
+		Assert.assertFalse(classNameAfterCollapse.equals(classNameAfterExapnd));
+	}
+
+	public void verifyAllCategoriesAreClickable() throws InterruptedException {
+		keyword.maximizeBrowser();
+		JavascriptExecutor js = (JavascriptExecutor) keyword.driver;
+
+        // Zoom out to 80% by setting the zoom level using JavaScript
+        js.executeScript("document.body.style.zoom='80%'");
+		keyword.clickOn(shopByCategoryMenu);
+		for (WebElement category : categoryList) {
+			WaitFor.visibilityOfElement(category);
+			System.out.println(category.getText());
+			keyword.clickOn(category);
+			keyword.clickOn(shopByCategoryMenu);
+
+		}
+	}
+=======
+
+	public void verifyUrlAfterSearch() {
+		String currentURL = Keyword.driver.getCurrentUrl();
+		keyword.print("Current URL: " + currentURL);
+		assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
+
+	}
+
+>>>>>>> f74725c8bc0b3db7c8a29ab5ca93fd60e3a3db52
 }

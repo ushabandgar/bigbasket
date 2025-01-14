@@ -30,6 +30,4 @@ public class WaitFor {
 		wait.until(ExpectedConditions.urlContains(url));
 
 	}
-	
-
 }
