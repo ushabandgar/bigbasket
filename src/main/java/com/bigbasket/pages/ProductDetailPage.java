@@ -48,7 +48,7 @@ public class ProductDetailPage {
 		WaitFor.visibilityOfElement(productImage);
 		assertTrue(productImage.isDisplayed(),
 				"Product image is not displayed, page might not be fully loaded.");
-		System.out.println("Click on product image");
+		System.out.println("Checked a product image loading.");
 
 	}
 

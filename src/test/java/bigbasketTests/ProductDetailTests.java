@@ -5,7 +5,6 @@ import com.bigbasket.base.*;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
-
 public class ProductDetailTests extends TestBase{
 	
 	
@@ -91,7 +90,23 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.getExpectedProductDetailPagePrice();
 	    productDetailPage.verifyActualAndExpectedProductPrice();
-	  
-	    
+
 	}
+	
+	@Test
+	public void verifyProductImageDisplayProperlyOnProductDetailPage(){
+		HomePage homePage = new HomePage();
+		homePage.clickOnSearchText();
+		homePage.sendProductName();
+		homePage.verifyUrlAfterSearch();
+		ProductSearchPage productSearchPage = new ProductSearchPage();
+		productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
+		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.switchWindowOnproductDetailPage();
+		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();
+		
+	}
+	
+
 }
