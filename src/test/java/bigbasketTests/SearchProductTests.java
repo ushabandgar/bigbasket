@@ -6,45 +6,38 @@ import com.bigbasket.pages.HomePage;
 
 public class SearchProductTests {
 	@Test
-	public void verifySearchTextBoxVisibleOrNotUsingPagefactory() {
+	public void verifySearchTextBoxVisibleOrNot() {
 		HomePage page = new HomePage();
-		page.SearchTextBoxVisibleOrNotUsingPagefactory();
-		
+		page.verifySearchTextBoxVisibleOrNot();
+
 	}
-	
-	// 2 Test case
 
 	@Test
-	public void verifyUserCanEnterTextIntoTxtBoxpageFactory() {
+	public void verifyUserCanAbleToEnterTextIntoTextBox() {
 		HomePage page = new HomePage();
-		page.sendKeysToElement();
+		page.verifyUserCanAbleToTextIntoSearchTextBox();
 
 	}
-
-	// 3 Test
 
 	@Test
-	public void verifyEnterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
+	public void verifyEnterTextPlaceholderTextIsEmpty() {
 		HomePage page = new HomePage();
-		page.enterTextPlaceholderTextIsEmptyUsingPgaeFactory();
+		page.verifyEnterTextWhenPlaceholderTextIsEmpty();
 
 	}
-
-	// 4 Test
 
 	@Test
-	public void verifyRelevantResultIsDispalyedWhenEnterTextUsingPageFactory() throws InterruptedException {
+	public void verifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
 		HomePage page = new HomePage();
-		page.RelevantResultIsDispalyedWhenEnterText();
+		page.VerifyRelevantResultIsDispalyedWhenEnterText();
 
 	}
-	//5 TEST CASE
+
 	@Test
-	 public void verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnterUsingPageFactory(){
+	public void verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnter() {
 		HomePage page = new HomePage();
-			page.verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnter();
+		page.verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnter();
 
 	}
-
 
 }

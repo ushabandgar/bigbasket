@@ -71,19 +71,26 @@ public class HomePage {
 		softlyAssert.assertAll();
 	}
 
+<<<<<<< HEAD
 	public void SearchTextBoxVisibleOrNotUsingPagefactory() {
 		System.out.println(SearchTextBox.isDisplayed());
+=======
+	public void verifySearchTextBoxVisibleOrNot() {
+>>>>>>> f74725c8bc0b3db7c8a29ab5ca93fd60e3a3db52
 		Assert.assertTrue(SearchTextBox.isDisplayed());
 
 	}
-
-	public void sendKeysToElement() {
+	public void verifyUserCanAbleToTextIntoSearchTextBox() {
 		SearchTextBox.sendKeys("Apple");
 		Assert.assertEquals(SearchTextBox.getAttribute("value"), "Apple");
 
 	}
 
+<<<<<<< HEAD
 	public void enterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
+=======
+	public void verifyEnterTextWhenPlaceholderTextIsEmpty() {
+>>>>>>> f74725c8bc0b3db7c8a29ab5ca93fd60e3a3db52
 		String value = SearchTextBox.getAttribute("value");
 		SearchTextBox.sendKeys("Apple");
 		String value1 = SearchTextBox.getAttribute("value");
@@ -91,7 +98,7 @@ public class HomePage {
 
 	}
 
-	public void RelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
+	public void VerifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
 		SearchTextBox.sendKeys("Tomato");
 		Thread.sleep(3000);
 		System.out.println(results.size());
@@ -127,6 +134,7 @@ public class HomePage {
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
 
 	}
+<<<<<<< HEAD
 
 	public void verifyUrlAfterSearch() {
 		String currentURL = Keyword.driver.getCurrentUrl();
@@ -158,4 +166,14 @@ public class HomePage {
 
 		}
 	}
+=======
+
+	public void verifyUrlAfterSearch() {
+		String currentURL = Keyword.driver.getCurrentUrl();
+		keyword.print("Current URL: " + currentURL);
+		assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
+
+	}
+
+>>>>>>> f74725c8bc0b3db7c8a29ab5ca93fd60e3a3db52
 }
