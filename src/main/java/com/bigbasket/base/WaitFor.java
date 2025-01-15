@@ -37,4 +37,10 @@ public class WaitFor {
 		wait.until(ExpectedConditions.urlContains(url));
 
 	}
+
+	public static void elementToBeDisplayed(WebElement element) {
+
+		wait.until(ExpectedConditions.visibilityOf(element));
+		
+	}
 }

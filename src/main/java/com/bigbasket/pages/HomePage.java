@@ -2,16 +2,13 @@ package com.bigbasket.pages;
 
 import static org.testng.Assert.assertTrue;
 
-import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import com.bigbasket.base.WaitFor;
 
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -49,8 +46,7 @@ public class HomePage {
 		}
 	}
 
-	public void verifyAllCatgoriesOfShopByCatogoryAreDisplayedProperly() {
-		keyword.clickOn(shopByCategoryMenu);
+	public void verifyAllCatgoriesAreDisplayedProperly() {
 		SoftAssert softlyAssert = new SoftAssert();
 		for (WebElement category : categoryList) {
 			Assert.assertTrue(category.isDisplayed());
@@ -60,7 +56,6 @@ public class HomePage {
 	}
 
 	public void verifyAllCatgoriesOfShopByCatogoryNamesAreDisplayedProperly() {
-		keyword.clickOn(shopByCategoryMenu);
 		List<String> expectedCategoryNames = keyword.getExpectedCategoryNames();
 		ArrayList<String> actualCategoryNames = new ArrayList<String>();
 		SoftAssert softlyAssert = new SoftAssert();
@@ -71,25 +66,24 @@ public class HomePage {
 		softlyAssert.assertAll();
 	}
 
-
 	public void SearchTextBoxVisibleOrNotUsingPagefactory() {
 		System.out.println(SearchTextBox.isDisplayed());
 	}
-	
+
 	public void verifySearchTextBoxVisibleOrNot() {
 		Assert.assertTrue(SearchTextBox.isDisplayed());
 
 	}
+
 	public void verifyUserCanAbleToTextIntoSearchTextBox() {
 		SearchTextBox.sendKeys("Apple");
 		Assert.assertEquals(SearchTextBox.getAttribute("value"), "Apple");
 
 	}
 
-
 	public void enterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
 	}
-	
+
 	public void verifyEnterTextWhenPlaceholderTextIsEmpty() {
 		String value = SearchTextBox.getAttribute("value");
 		SearchTextBox.sendKeys("Apple");
@@ -136,25 +130,25 @@ public class HomePage {
 	}
 
 	public void verifyShopByCategoryCollapsesOnClickAfterExapands() {
-		keyword.clickOn(shopByCategoryMenu);
 		String classNameAfterExapnd = shopByCategoryMenu.getAttribute("class");
-		keyword.clickOn(shopByCategoryMenu);
+		clickOnShopByCategoryMenu();
 		String classNameAfterCollapse = shopByCategoryMenu.getAttribute("class");
 		Assert.assertFalse(classNameAfterCollapse.equals(classNameAfterExapnd));
 	}
 
 	public void verifyAllCategoriesAreClickable() throws InterruptedException {
 		keyword.maximizeBrowser();
-		JavascriptExecutor js = (JavascriptExecutor) keyword.driver;
-
-        // Zoom out to 80% by setting the zoom level using JavaScript
-        js.executeScript("document.body.style.zoom='80%'");
-		keyword.clickOn(shopByCategoryMenu);
 		for (WebElement category : categoryList) {
 			WaitFor.visibilityOfElement(category);
-			System.out.println(category.getText());
-			keyword.clickOn(category);
-			keyword.clickOn(shopByCategoryMenu);
+			String categoryNames = category.getText();
+			System.out.println(categoryNames);
+			//keyword.clickOn(category);
+			clickOnCategory(categoryNames);
+			Thread.sleep(5000);
+			if (categoryNames.equals("Paan Corner")) {
+				break;
+			}
+			clickOnShopByCategoryMenu();
 
 		}
 	}
@@ -166,4 +160,14 @@ public class HomePage {
 
 	}
 
+	public void clickOnShopByCategoryMenu() {
+		keyword.clickOn(shopByCategoryMenu);
+	}
+
+	public void clickOnCategory(String categoryName) throws InterruptedException {
+		WebElement fashionCat = shopByCategoryMenu.findElement(
+				By.xpath("//div[@class=\"CategoryMenu___StyledMenuItems-sc-d3svbp-4 fpskRu\"]/nav/ul/li/a[@href=\"/cl/"
+						+ categoryName + "/?nc=nb\"]"));
+		fashionCat.click();
+	}
 }
