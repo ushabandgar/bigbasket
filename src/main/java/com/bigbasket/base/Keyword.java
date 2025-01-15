@@ -1,4 +1,5 @@
 package com.bigbasket.base;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Optional;
@@ -41,6 +43,7 @@ public class Keyword {
 	public void launchUrl(String url) {
 		driver.get(url);
 	}
+
 	public void clickOn(WebElement element) {
 		element.click();
 	}
@@ -48,56 +51,58 @@ public class Keyword {
 	public void closeBrowser() {
 		driver.close();
 	}
-	
+
 	public void quitBrowser() {
 		driver.quit();
 	}
-
 
 	public void maximizeBrowser() {
 		driver.manage().window().maximize();
 
 	}
-	
+
 	public void print(String string) {
 		System.out.println(string);
 
 	}
-	
+
 	// it take webelement and text
-		public void sendkeys(WebElement element, String text) {
-			element.sendKeys(text);
-		}
+	public void sendkeys(WebElement element, String text) {
+		element.sendKeys(text);
+	}
 
-		public void sendKeys(WebElement element, Keys enter) {
-			element.sendKeys(enter);
+	public void sendKeys(WebElement element, Keys enter) {
+		element.sendKeys(enter);
 
-		}
+	}
+	
+	public void mouseHoverOn(WebElement element) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).perform();
 
-		public void switchToChildWindowHandle() {
-			Set<String> allWindows = driver.getWindowHandles();
-			String parentWindow = driver.getWindowHandle();
-			for (String handle : allWindows) {
-				if (!handle.equals(parentWindow)) {
-					driver.switchTo().window(handle);
-					break;
-				}
+	}
+
+	public void switchToChildWindowHandle() {
+		Set<String> allWindows = driver.getWindowHandles();
+		String parentWindow = driver.getWindowHandle();
+		for (String handle : allWindows) {
+			if (!handle.equals(parentWindow)) {
+				driver.switchTo().window(handle);
+				break;
 			}
 		}
+	}
 
-		public void switchToWindowByTitle(String expectedTitleSubstring) {
-			Set<String> allWindows = driver.getWindowHandles();
-			for (String handle : allWindows) {
-				String currentTitle = driver.switchTo().window(handle).getTitle();
-				if (currentTitle.contains(expectedTitleSubstring)) {
-					System.out.println("Switched to window with title: " + currentTitle);
-					break;
-				}
+	public void switchToWindowByTitle(String expectedTitleSubstring) {
+		Set<String> allWindows = driver.getWindowHandles();
+		for (String handle : allWindows) {
+			String currentTitle = driver.switchTo().window(handle).getTitle();
+			if (currentTitle.contains(expectedTitleSubstring)) {
+				System.out.println("Switched to window with title: " + currentTitle);
+				break;
 			}
 		}
-		
-		
-		
+	}
 
 	public List<WebElement> getWebElements(String locator) {
 		String locatorType = locator.split("##")[0];
@@ -120,7 +125,7 @@ public class Keyword {
 		} else
 			return null;
 	}
-	
+
 	public WebElement getWebElement(String locator) {
 
 		String locatorType = locator.split("##")[0];
@@ -146,31 +151,14 @@ public class Keyword {
 	}
 
 	public List<String> getExpectedCategoryNames() {
-		List<String> expectedCategories=Arrays.asList("Electronics","Fashion","Apparel","Fruits & Vegetables","Foodgrains, Oil & Masala"
-				,"Bakery, Cakes & Dairy",
-				"Beverages",
-				"Snacks & Branded Foods",
-				"Beauty & Hygiene",
-				"Cleaning & Household",
-				"Kitchen, Garden & Pets",
-				"Eggs, Meat & Fish",
-				"Gourmet & World Food",
-				"Baby Care",
-				"Paan Corner",
-				"Audio devices",
-				"Beauty & Grooming",
-				"Cameras & Accessories",
-				"Electrical Accessories",
-				"Home Appliances",
-				"Kitchen Appliances",
-				"Phone & Laptop Accessory",
-				"Phone, Laptop & Tablets",
-				"Smart Wearables",
-				"Earbuds",
-				"Headphones & Earphones",
-				"Speakers & Microphones");	
+		List<String> expectedCategories = Arrays.asList("Electronics", "Fashion", "Apparel", "Fruits & Vegetables",
+				"Foodgrains, Oil & Masala", "Bakery, Cakes & Dairy", "Beverages", "Snacks & Branded Foods",
+				"Beauty & Hygiene", "Cleaning & Household", "Kitchen, Garden & Pets", "Eggs, Meat & Fish",
+				"Gourmet & World Food", "Baby Care", "Paan Corner", "Audio devices", "Beauty & Grooming",
+				"Cameras & Accessories", "Electrical Accessories", "Home Appliances", "Kitchen Appliances",
+				"Phone & Laptop Accessory", "Phone, Laptop & Tablets", "Smart Wearables", "Earbuds",
+				"Headphones & Earphones", "Speakers & Microphones");
 		return expectedCategories;
 	}
 
-	
 }

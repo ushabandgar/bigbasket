@@ -54,9 +54,9 @@ public class ProductDetailTests extends TestBase{
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
-		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();
-		Keyword keyword=new Keyword();
-		keyword.print("verify Page loaded successfully! product image visible.");
+		productDetailPage.CheckProductUrlLoadingSuccessfully();
+		Keyword keyword = new Keyword();
+		keyword.print("Product Page loaded successfully! product image visible.");
 	}
 	
 	@Test
@@ -108,5 +108,38 @@ public class ProductDetailTests extends TestBase{
 		
 	}
 	
+	//todays >15 Jan
+	@Test
+	public void verifyHoverFeatureWorksWhenUserHoversOnProductImage() {
+		HomePage homePage = new HomePage();
+		homePage.clickOnSearchText();
+		homePage.sendProductName();
+		homePage.verifyUrlAfterSearch();
+		ProductSearchPage productSearchPage = new ProductSearchPage();
+		productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
+		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.switchWindowOnproductDetailPage();
+		productDetailPage.hoverOnImage();
+		productDetailPage.verifyHoverFeatureWorks();
+	}
+	
+	
+	@Test
+	public void verifyMultipleImagesForProductAreClikable() {
+		HomePage homePage = new HomePage();
+		homePage.clickOnSearchText();
+		homePage.sendProductName();
+		homePage.verifyUrlAfterSearch();
+		ProductSearchPage productSearchPage = new ProductSearchPage();
+		productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
+		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.switchWindowOnproductDetailPage();
+		productDetailPage.clickOnProductImageGallaryOnebyOne();
+		
+		
+		
+	}
 
 }
