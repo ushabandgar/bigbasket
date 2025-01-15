@@ -91,7 +91,7 @@ public class ProductDetailPage {
 		assertTrue(productImage.isDisplayed(), "Hover effect did not make the zoomed image visible.");
 	}
 	
-	public void clickOnProductImageGallaryOnebyOne(){
+	public void verifyImageClickFuctionalityGallaryOnebyOne(){
    	 for (int i = 0; i <= 4; i++) {
 			String imageSelector = "#thumb-" + i;
 			List<WebElement> productImages = WaitFor.visibilityOfElements(Keyword.driver.findElements(By.cssSelector(imageSelector)));

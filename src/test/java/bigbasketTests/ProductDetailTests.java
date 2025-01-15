@@ -136,7 +136,7 @@ public class ProductDetailTests extends TestBase{
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
-		productDetailPage.clickOnProductImageGallaryOnebyOne();
+		productDetailPage.verifyImageClickFuctionalityGallaryOnebyOne();
 		
 		
 		
