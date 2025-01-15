@@ -56,7 +56,7 @@ public class ShopByCategoryTests extends TestBase {
 		homepage.clickOnShopByCategoryMenu();
 		homepage.clickOnCategory("fashion");
 		ShopByCategoryPage categoryPage = new ShopByCategoryPage();
-		categoryPage.verifySpecificCtageoryPageOpens();
+		categoryPage.verifySpecificCatgeoryPageOpens();
 
 	}
 }
