@@ -24,7 +24,7 @@ public class ShopByCategoryPage {
 		return CategoryNameOnCategoryPage;
 	}
 
-	public void verifySpecificCtageoryPageOpens() throws InterruptedException {		
+	public void verifySpecificCatgeoryPageOpens() throws InterruptedException {		
 		Thread.sleep(3000);
 		//WaitFor.untilUrlLoad("https://www.bigbasket.com/cl/fashion/?nc=nb");
 		WaitFor.elementToBeDisplayed(categoryNameOnCategoryPage);
