@@ -8,7 +8,7 @@ public class TestBase {
 	
 	@BeforeMethod
 	public void setUp() throws Exception {
-		keyword.openBrowser("Chrome");
+		keyword.openBrowser("Firefox");
 		keyword.launchUrl("https://www.bigbasket.com/");
 		keyword.maximizeBrowser();
 	}
