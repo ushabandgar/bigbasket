@@ -26,7 +26,7 @@ public class HomePage {
 	List<WebElement> categoryList;
 
 	@FindBy(xpath = "(//input[@placeholder=\"Search for Products...\"])[2]")
-	WebElement SearchTextBox;
+	WebElement searchTextBox;
 
 	@FindBy(xpath = "//li[@class=\"QuickSearch___StyledMenuItem-sc-rtz2vl-4 ibNDA-d\"]")
 	List<WebElement> results;
@@ -36,6 +36,110 @@ public class HomePage {
 
 	public HomePage() {
 		PageFactory.initElements(Keyword.driver, this);
+	}
+
+	public void verifySearchTextBoxVisibleOnThePageOrNot() {
+		Assert.assertTrue(searchTextBox.isDisplayed());
+
+	}
+
+	public void enterTextIntoSearchTextBox() throws InterruptedException {
+		Keyword.sendkeys(searchTextBox, "Apple");
+		Thread.sleep(3000);
+	}
+
+	public void verifyThatUserCanAbleToTypeTextIntoTheSearchBar() {
+		Assert.assertEquals(searchTextBox.getAttribute("value"), "Apple");
+	}
+
+	public String getValueOfAttribute() {
+		String value = searchTextBox.getAttribute("value");
+		Keyword.sendkeys(searchTextBox, "Apple");
+		String value1 = searchTextBox.getAttribute("value");
+		return value;
+
+	}
+
+	public void verifyThePlaceholderTextIsDisplayedWhenTheSearchBarIsEmpty() {
+		String value = getValueOfAttribute();
+		String value1 = getValueOfAttribute();
+		Assert.assertFalse(value == value1);
+
+	}
+
+	public List<String> getAllSearchResultDescription() {
+		List<WebElement> descriptions = results;
+		List<String> searchdescriptions = new ArrayList<String>();
+		for (WebElement description : descriptions) {
+			searchdescriptions.add(description.getText());
+
+		}
+		return searchdescriptions;
+
+	}
+
+	public void verifyThatRelevantSearchResultsAreDisplayedWhenValidTextIsEntered() {
+		SoftAssert softly = new SoftAssert();
+		for (String description : getAllSearchResultDescription()) {
+			softly.assertTrue(description.contains("Apple"));
+
+		}
+		softly.assertAll();
+
+	}
+
+	public String getUrlBeforeText() {
+		String urlBeforeText = Keyword.driver.getCurrentUrl();
+		System.out.println(urlBeforeText);
+		return urlBeforeText;
+	}
+
+	public void KeepEmptySearchBar() {
+		Keyword.sendkeys(searchTextBox, "");
+		searchTextBox.sendKeys(Keys.ENTER);
+
+	}
+
+	public String getUrlAfterText() {
+		String urlAfterText = Keyword.driver.getCurrentUrl();
+		System.out.println(urlAfterText);
+		return urlAfterText;
+
+	}
+
+	public void verifyThebBehaviourWhenThSearchbBarIsLeftEmptyAndUserPressTheEnter() {
+		String urlBeforeText = getUrlBeforeText();
+		KeepEmptySearchBar();
+		String urlAfterText = getUrlAfterText();
+		Assert.assertEquals(urlBeforeText, urlAfterText);
+
+	}
+
+	public void EnterPartialTextIntoTextBox() throws InterruptedException {
+		Keyword.sendkeys(searchTextBox, "Toma");
+		Thread.sleep(3000);
+
+	}
+
+	public List<String> getAllSearchResultDescriptionWhenEnterPartialText() {
+		List<WebElement> descriptions = results;
+		List<String> searchdescriptions = new ArrayList<String>();
+		for (WebElement description : descriptions) {
+			searchdescriptions.add(description.getText());
+
+		}
+		return searchdescriptions;
+
+	}
+
+	public void verifyWhenEnterPartialTextIntoSerachbarThenResultShouldBeDisplayeOrNot() {
+		SoftAssert softly = new SoftAssert();
+		for (String description : getAllSearchResultDescription()) {
+			softly.assertTrue(description.contains("Toma"));
+
+		}
+		softly.assertAll();
+
 	}
 
 	public void verifyShopByCategoryMenuIsAvailable() {
@@ -64,52 +168,6 @@ public class HomePage {
 		}
 		softlyAssert.assertEquals(actualCategoryNames, expectedCategoryNames);
 		softlyAssert.assertAll();
-	}
-
-	public void SearchTextBoxVisibleOrNotUsingPagefactory() {
-
-		System.out.println(SearchTextBox.isDisplayed());
-	}
-
-	public void verifySearchTextBoxVisibleOrNot() {
-		Assert.assertTrue(SearchTextBox.isDisplayed());
-
-	}
-
-	public void verifyUserCanAbleToTextIntoSearchTextBox() {
-
-		SearchTextBox.sendKeys("Apple");
-		Assert.assertEquals(SearchTextBox.getAttribute("value"), "Apple");
-
-	}
-
-	public void verifyEnterTextWhenPlaceholderTextIsEmpty() {
-		String value = SearchTextBox.getAttribute("value");
-		SearchTextBox.sendKeys("Apple");
-		String value1 = SearchTextBox.getAttribute("value");
-		Assert.assertFalse(value == value1);
-	}
-
-	public void verifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
-		SearchTextBox.sendKeys("Tomato");
-		Thread.sleep(3000);
-		System.out.println(results.size());
-		for (WebElement result : results) {
-			String text = result.getText();
-			System.out.println(text);
-			assertTrue(text.contains("Tomato"));
-		}
-	}
-
-	public void verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnter() {
-		String urlBefore = Keyword.driver.getCurrentUrl();
-		System.out.println(urlBefore);
-		SearchTextBox.sendKeys("");
-		SearchTextBox.sendKeys(Keys.ENTER);
-		String urlAfter = Keyword.driver.getCurrentUrl();
-		System.out.println(urlAfter);
-		Assert.assertEquals(urlBefore, urlAfter);
-
 	}
 
 	public void clickOnSearchText() {
