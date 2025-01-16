@@ -67,6 +67,7 @@ public class HomePage {
 	}
 
 	public void SearchTextBoxVisibleOrNotUsingPagefactory() {
+
 		System.out.println(SearchTextBox.isDisplayed());
 	}
 
@@ -76,12 +77,10 @@ public class HomePage {
 	}
 
 	public void verifyUserCanAbleToTextIntoSearchTextBox() {
+
 		SearchTextBox.sendKeys("Apple");
 		Assert.assertEquals(SearchTextBox.getAttribute("value"), "Apple");
 
-	}
-
-	public void enterTextPlaceholderTextIsEmptyUsingPgaeFactory() {
 	}
 
 	public void verifyEnterTextWhenPlaceholderTextIsEmpty() {
@@ -89,10 +88,9 @@ public class HomePage {
 		SearchTextBox.sendKeys("Apple");
 		String value1 = SearchTextBox.getAttribute("value");
 		Assert.assertFalse(value == value1);
-
 	}
 
-	public void VerifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
+	public void verifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
 		SearchTextBox.sendKeys("Tomato");
 		Thread.sleep(3000);
 		System.out.println(results.size());
@@ -100,9 +98,7 @@ public class HomePage {
 			String text = result.getText();
 			System.out.println(text);
 			assertTrue(text.contains("Tomato"));
-
 		}
-
 	}
 
 	public void verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnter() {
@@ -126,7 +122,6 @@ public class HomePage {
 		searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
 		searchText.sendKeys(Keys.ENTER);
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
-
 	}
 
 	public void verifyShopByCategoryCollapsesOnClickAfterExapands() {
@@ -141,7 +136,13 @@ public class HomePage {
 		keyword.maximizeBrowser();
 		for (WebElement category : categoryList) {
 			WaitFor.visibilityOfElement(category);
+<<<<<<< HEAD
 			String categoryNames = category.getText().toLowerCase();
+=======
+			String categoryNames = category.getText();
+			System.out.println(categoryNames);
+			// keyword.clickOn(category);
+>>>>>>> origin/master
 			clickOnCategory(categoryNames);
 			System.out.println(categoryNames);
 			Thread.sleep(5000);

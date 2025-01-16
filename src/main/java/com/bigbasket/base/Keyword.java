@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Optional;
@@ -77,6 +78,15 @@ public class Keyword {
 		element.sendKeys(enter);
 
 	}
+<<<<<<< HEAD
+=======
+	
+	public void mouseHoverOn(WebElement element) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).perform();
+
+	}
+>>>>>>> origin/master
 
 	public void switchToChildWindowHandle() {
 		Set<String> allWindows = driver.getWindowHandles();
@@ -157,6 +167,7 @@ public class Keyword {
 		return expectedCategories;
 	}
 
+<<<<<<< HEAD
 	public void clickOnYourCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" & ", "-");
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(", ", "-");
@@ -167,4 +178,6 @@ public class Keyword {
 		categoryName.click();
 	}
 
+=======
+>>>>>>> origin/master
 }
