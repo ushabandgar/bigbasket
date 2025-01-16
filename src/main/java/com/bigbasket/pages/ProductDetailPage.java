@@ -91,16 +91,21 @@ public class ProductDetailPage {
 		assertTrue(productImage.isDisplayed(), "Hover effect did not make the zoomed image visible.");
 	}
 	
-	public void verifyImageClickFuctionalityGallaryOnebyOne(){
-   	 for (int i = 0; i <= 4; i++) {
+	public void verifyclickFucntinalityOnProductImageGallaryOnebyOne() {
+		for (int i = 0; i <= 4; i++) {
 			String imageSelector = "#thumb-" + i;
-			List<WebElement> productImages = WaitFor.visibilityOfElements(Keyword.driver.findElements(By.cssSelector(imageSelector)));
+			List<WebElement> productImages = WaitFor
+					.visibilityOfElements(Keyword.driver.findElements(By.cssSelector(imageSelector)));
 			for (WebElement images : productImages) {
 				WaitFor.visibilityOfElement(images);
 				images.click();
 				assertTrue(images.isDisplayed(), "Image is not visible");
 			}
 		}
-    }
+	}
+
+	public void verifyGallaryImageQuality() {
+		assertTrue(productImage.isDisplayed());
+	}
 
 }

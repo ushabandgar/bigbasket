@@ -1,4 +1,6 @@
 package bigbasketTests;
+import java.io.IOException;
+
 import org.testng.annotations.Test;
 
 import com.bigbasket.base.*;
@@ -6,8 +8,7 @@ import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
 public class ProductDetailTests extends TestBase{
-	
-	
+
 	@Test
 	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() {
 		HomePage homePage = new HomePage();
@@ -40,8 +41,7 @@ public class ProductDetailTests extends TestBase{
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
-
-	}
+}
 
 	@Test
 	public void verifyWhenUserClickOnProductThenProductUrlFullyLoaded() {
@@ -73,7 +73,6 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.getexpectedProductDetailTitleText();
 	    productDetailPage.verifyActualAndExpectedProductText();
-
 	}
 	
 	@Test
@@ -90,7 +89,6 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.getExpectedProductDetailPagePrice();
 	    productDetailPage.verifyActualAndExpectedProductPrice();
-
 	}
 	
 	@Test
@@ -104,11 +102,9 @@ public class ProductDetailTests extends TestBase{
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
-		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();
-		
+		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();	
 	}
-	
-	//todays >15 Jan
+
 	@Test
 	public void verifyHoverFeatureWorksWhenUserHoversOnProductImage() {
 		HomePage homePage = new HomePage();
@@ -136,15 +132,28 @@ public class ProductDetailTests extends TestBase{
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
-		productDetailPage.verifyImageClickFuctionalityGallaryOnebyOne();
-		
-		
-		
+		productDetailPage.verifyclickFucntinalityOnProductImageGallaryOnebyOne();
+
+	}
+
+	@Test
+	public void verifyGallaryImagesForProductAreHighQuality() throws IOException {
+		HomePage homePage = new HomePage();
+		homePage.clickOnSearchText();
+		homePage.sendProductName();
+		homePage.verifyUrlAfterSearch();
+		ProductSearchPage productSearchPage = new ProductSearchPage();
+		productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
+		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.switchWindowOnproductDetailPage();
+		productDetailPage.verifyclickFucntinalityOnProductImageGallaryOnebyOne();
+		productDetailPage.verifyGallaryImageQuality();
 	}
 	
 	
-	public void testmethod() {
-	System.out.println("testing");
-	}
+	
+	
+	
 
 }
