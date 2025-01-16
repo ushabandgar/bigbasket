@@ -70,7 +70,7 @@ public class Keyword {
 	}
 
 	// it take webelement and text
-	public void sendkeys(WebElement element, String text) {
+	public static void sendkeys(WebElement element, String text) {
 		element.sendKeys(text);
 	}
 
