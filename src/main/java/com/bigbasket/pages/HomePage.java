@@ -20,7 +20,7 @@ public class HomePage {
 	Keyword keyword = new Keyword();
 
 	@FindBy(css = "button[id*='headlessui-menu-button-:R5bab6:']")
-	WebElement shopByCategoryMenu;
+	public static WebElement shopByCategoryMenu;
 
 	@FindBy(xpath = "//li[@class=\"jsx-1259984711\" and @role=\"none\"]")
 	List<WebElement> categoryList;
@@ -131,21 +131,36 @@ public class HomePage {
 		Assert.assertFalse(classNameAfterCollapse.equals(classNameAfterExapnd));
 	}
 
-	public void verifyAllCategoriesAreClickable() throws InterruptedException {
+	public boolean clickOnAllCategoriesOneByOne() throws InterruptedException {
+		boolean areClickable=false;
 		keyword.maximizeBrowser();
 		for (WebElement category : categoryList) {
 			WaitFor.visibilityOfElement(category);
+<<<<<<< HEAD
+			String categoryNames = category.getText().toLowerCase();
+=======
 			String categoryNames = category.getText();
 			System.out.println(categoryNames);
 			// keyword.clickOn(category);
+>>>>>>> origin/master
 			clickOnCategory(categoryNames);
+			System.out.println(categoryNames);
 			Thread.sleep(5000);
+			clickOnShopByCategoryMenu();
 			if (categoryNames.equals("Paan Corner")) {
+				areClickable=true;
+				System.out.println("flag after last parent category : "+areClickable);
 				break;
 			}
-			clickOnShopByCategoryMenu();
-
 		}
+		return areClickable;
+	}
+
+	public void verifyAllCategoriesAreClickable() throws InterruptedException {
+		boolean flag=clickOnAllCategoriesOneByOne();
+		SoftAssert softlyAssert=new SoftAssert();
+		softlyAssert.assertTrue(flag,"All category are not clickable");
+		softlyAssert.assertAll();
 	}
 
 	public void verifyUrlAfterSearch() {
@@ -159,10 +174,13 @@ public class HomePage {
 		keyword.clickOn(shopByCategoryMenu);
 	}
 
-	public void clickOnCategory(String categoryName) throws InterruptedException {
-		WebElement fashionCat = shopByCategoryMenu.findElement(
-				By.xpath("//div[@class=\"CategoryMenu___StyledMenuItems-sc-d3svbp-4 fpskRu\"]/nav/ul/li/a[@href=\"/cl/"
-						+ categoryName + "/?nc=nb\"]"));
-		fashionCat.click();
+	public void clickOnCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
+		 keyword.clickOnYourCategory(categoryNameInLowerCaseOnly);
+		 
+	}
+
+	public void verifyNavigatedToHomePageFromCategoryPage() {
+		String urlAfterNavigationToHome=keyword.driver.getCurrentUrl();
+		assertTrue(urlAfterNavigationToHome.equals("https://www.bigbasket.com/"));
 	}
 }

@@ -2,6 +2,7 @@ package bigbasketTests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -46,6 +47,7 @@ public class ShopByCategoryTests extends TestBase {
 	public void verifyAllCategoriesAreClickable() throws InterruptedException {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
+		homepage.clickOnAllCategoriesOneByOne();
 		homepage.verifyAllCategoriesAreClickable();
 	}
 
@@ -58,5 +60,40 @@ public class ShopByCategoryTests extends TestBase {
 		ShopByCategoryPage categoryPage = new ShopByCategoryPage();
 		categoryPage.verifySpecificCatgeoryPageOpens();
 
+	}
+
+	//working on this test case dont review it
+	@Test
+	public void verifyProductCountMatchesActualNumberProductsAvailableUnderThatCategory() throws InterruptedException {
+		HomePage homepage = new HomePage();
+		homepage.clickOnShopByCategoryMenu();
+		homepage.clickOnCategory("fashion");
+		Thread.sleep(3000);
+		
+		String displayedCount = keyword.driver
+				.findElement(
+						By.cssSelector("span[class=\"Label-sc-15v1nk5-0 Title___StyledLabel-sc-800s46-0 gJxZPQ lnIjdY\"]"))
+				.getText();
+		displayedCount = displayedCount.replace("(", "");
+		displayedCount = displayedCount.replace(")", "");
+		System.out.println(displayedCount);
+		Thread.sleep(5000);
+		int actualProductCount = keyword.driver
+				.findElements(By.cssSelector("div[class=\"SKUDeck___StyledDiv-sc-1e5d9gk-0 eA-dmzP\"]")).size();
+		System.out.println(actualProductCount);
+		Assert.assertEquals(actualProductCount, displayedCount);
+	}
+	
+	//this is done can review.Tried wait instead of sleep but not working
+	@Test
+	public void verifyNavigationToHomePageFromCatgeoryPage() throws InterruptedException{
+		HomePage homepage = new HomePage();
+		homepage.clickOnShopByCategoryMenu();
+		homepage.clickOnCategory("fashion");
+		Thread.sleep(3000);
+		ShopByCategoryPage categoryPage = new ShopByCategoryPage();
+		categoryPage.clickOnHomeButton();
+		Thread.sleep(3000);
+		homepage.verifyNavigatedToHomePageFromCategoryPage();
 	}
 }

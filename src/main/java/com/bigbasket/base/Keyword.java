@@ -16,6 +16,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Optional;
 
+import com.bigbasket.pages.HomePage;
+import com.bigbasket.pages.ShopByCategoryPage;
+
 public class Keyword {
 
 	public static RemoteWebDriver driver;
@@ -75,12 +78,15 @@ public class Keyword {
 		element.sendKeys(enter);
 
 	}
+<<<<<<< HEAD
+=======
 	
 	public void mouseHoverOn(WebElement element) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).perform();
 
 	}
+>>>>>>> origin/master
 
 	public void switchToChildWindowHandle() {
 		Set<String> allWindows = driver.getWindowHandles();
@@ -164,4 +170,17 @@ public class Keyword {
 	
 
 
+<<<<<<< HEAD
+	public void clickOnYourCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
+		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" & ", "-");
+		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(", ", "-");
+		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" ", "-");
+		WebElement categoryName = HomePage.shopByCategoryMenu.findElement(
+				By.xpath("//div[@class=\"CategoryMenu___StyledMenuItems-sc-d3svbp-4 fpskRu\"]/nav/ul/li/a[@href=\"/cl/"
+						+ categoryNameInLowerCaseOnly + "/?nc=nb\"]"));
+		categoryName.click();
+	}
+
+=======
+>>>>>>> origin/master
 }
