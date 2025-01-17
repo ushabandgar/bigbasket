@@ -10,14 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Optional;
 
 import com.bigbasket.pages.HomePage;
-import com.bigbasket.pages.ShopByCategoryPage;
 
 public class Keyword {
 
@@ -173,6 +171,10 @@ public class Keyword {
 				By.xpath("//div[@class=\"CategoryMenu___StyledMenuItems-sc-d3svbp-4 fpskRu\"]/nav/ul/li/a[@href=\"/cl/"
 						+ categoryNameInLowerCaseOnly + "/?nc=nb\"]"));
 		categoryName.click();
+	}
+
+	public void clickOnBackButtonOfBrowser() {
+				driver.navigate().back();
 	}
 
 }
