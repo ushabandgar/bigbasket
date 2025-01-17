@@ -195,6 +195,10 @@ public class HomePage {
 		for (WebElement category : categoryList) {
 			WaitFor.visibilityOfElement(category);
 			String categoryNames = category.getText().toLowerCase();
+<<<<<<< HEAD
+=======
+			System.out.println(categoryNames);	
+>>>>>>> 744d375f478ce4b92f19cd315132cf0cd1cfef48
 			clickOnCategory(categoryNames);
 			System.out.println(categoryNames);
 			Thread.sleep(5000);
