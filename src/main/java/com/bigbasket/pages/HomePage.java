@@ -194,13 +194,11 @@ public class HomePage {
 		keyword.maximizeBrowser();
 		for (WebElement category : categoryList) {
 			WaitFor.visibilityOfElement(category);
-<<<<<<< HEAD
 			String categoryNames = category.getText().toLowerCase();
+<<<<<<< HEAD
 =======
-			String categoryNames = category.getText();
-			System.out.println(categoryNames);
-			// keyword.clickOn(category);
->>>>>>> origin/master
+			System.out.println(categoryNames);	
+>>>>>>> 744d375f478ce4b92f19cd315132cf0cd1cfef48
 			clickOnCategory(categoryNames);
 			System.out.println(categoryNames);
 			Thread.sleep(5000);
