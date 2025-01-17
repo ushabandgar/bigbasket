@@ -164,10 +164,7 @@ public class Keyword {
 		return expectedCategories;
 	}
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 744d375f478ce4b92f19cd315132cf0cd1cfef48
 	public void clickOnYourCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" & ", "-");
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(", ", "-");
@@ -178,8 +175,4 @@ public class Keyword {
 		categoryName.click();
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 744d375f478ce4b92f19cd315132cf0cd1cfef48
 }
