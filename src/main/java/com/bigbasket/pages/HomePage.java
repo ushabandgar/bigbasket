@@ -190,24 +190,19 @@ public class HomePage {
 	}
 
 	public boolean clickOnAllCategoriesOneByOne() throws InterruptedException {
-		boolean areClickable=false;
+		boolean areClickable = false;
 		keyword.maximizeBrowser();
 		for (WebElement category : categoryList) {
 			WaitFor.visibilityOfElement(category);
-<<<<<<< HEAD
 			String categoryNames = category.getText().toLowerCase();
-=======
-			String categoryNames = category.getText();
 			System.out.println(categoryNames);
-			// keyword.clickOn(category);
->>>>>>> origin/master
 			clickOnCategory(categoryNames);
 			System.out.println(categoryNames);
 			Thread.sleep(5000);
 			clickOnShopByCategoryMenu();
 			if (categoryNames.equals("Paan Corner")) {
-				areClickable=true;
-				System.out.println("flag after last parent category : "+areClickable);
+				areClickable = true;
+				System.out.println("flag after last parent category : " + areClickable);
 				break;
 			}
 		}
@@ -215,9 +210,9 @@ public class HomePage {
 	}
 
 	public void verifyAllCategoriesAreClickable() throws InterruptedException {
-		boolean flag=clickOnAllCategoriesOneByOne();
-		SoftAssert softlyAssert=new SoftAssert();
-		softlyAssert.assertTrue(flag,"All category are not clickable");
+		boolean flag = clickOnAllCategoriesOneByOne();
+		SoftAssert softlyAssert = new SoftAssert();
+		softlyAssert.assertTrue(flag, "All category are not clickable");
 		softlyAssert.assertAll();
 	}
 
@@ -233,12 +228,12 @@ public class HomePage {
 	}
 
 	public void clickOnCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
-		 keyword.clickOnYourCategory(categoryNameInLowerCaseOnly);
-		 
+		keyword.clickOnYourCategory(categoryNameInLowerCaseOnly);
+
 	}
 
 	public void verifyNavigatedToHomePageFromCategoryPage() {
-		String urlAfterNavigationToHome=keyword.driver.getCurrentUrl();
+		String urlAfterNavigationToHome = keyword.driver.getCurrentUrl();
 		assertTrue(urlAfterNavigationToHome.equals("https://www.bigbasket.com/"));
 	}
 }

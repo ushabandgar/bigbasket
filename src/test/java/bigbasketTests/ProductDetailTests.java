@@ -151,7 +151,34 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.verifyGallaryImageQuality();
 	}
 	
+	@Test
+	public void VerifyThePriceFormattingFollowTheStandardCurrenctSymbolLike₹() {
+		HomePage homePage = new HomePage();
+		homePage.clickOnSearchText();
+		homePage.sendProductName();
+		homePage.verifyUrlAfterSearch();
+		ProductSearchPage productSearchPage = new ProductSearchPage();
+		productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
+		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.switchWindowOnproductDetailPage();
+		productDetailPage.getExpectedProductDetailPagePrice();
+		productDetailPage.verifyPriceContainCurrencySymbolLike₹();
+	}
+	@Test
+	public void verifyProductPriceChangeWhileSelectingPackSize() {
+		HomePage homePage = new HomePage();
+		homePage.clickOnSearchText();
+		homePage.sendProductName();
+		homePage.verifyUrlAfterSearch();
+		ProductSearchPage productSearchPage = new ProductSearchPage();
+		productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
+		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.switchWindowOnproductDetailPage();
+		productDetailPage.verifyAfterclickOnProductPackSizeFor500mlProductPriceWillChange();
 	
+	}
 	
 	
 	

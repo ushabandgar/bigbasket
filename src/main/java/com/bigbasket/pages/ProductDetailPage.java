@@ -1,5 +1,5 @@
 package com.bigbasket.pages;
-
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import java.util.List;
@@ -22,6 +22,9 @@ public class ProductDetailPage {
 	@FindBy(css = "td.fLZywG")
 	WebElement expectedproductprice;
 
+	@FindBy(css="section.jFkiCb div.w-full:nth-child(2) div.border-silverSurfer-400 div.w-40:nth-child(2) span.cWTZQL span.bvikaK:nth-child(1)")
+	WebElement packsize500ml;
+	
 	public ProductDetailPage() {
 
 		PageFactory.initElements(Keyword.driver, this);
@@ -106,6 +109,29 @@ public class ProductDetailPage {
 
 	public void verifyGallaryImageQuality() {
 		assertTrue(productImage.isDisplayed());
+	}
+	
+	public void verifyPriceContainCurrencySymbolLike₹() {
+		assertTrue(expectedproductprice.getText().contains("₹"));
+		System.out.println("₹ currency symbol available");
+	}
+	
+	public void verifyAfterclickOnProductPackSizeFor500mlProductPriceWillChange() {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		WaitFor.visibilityOfElement(packsize500ml);
+		String actualpacksizePrice= packsize500ml.getText();
+	    System.out.println("actualpacksizePrice: "+actualpacksizePrice); 
+	    keyword.clickOn(packsize500ml);
+
+	   
+	    WaitFor.visibilityOfElement(expectedproductprice);
+	    String price = expectedproductprice.getText(); 
+	    
+	    String[] expectedPackSizePrice = price.split(" ");  // "Price:" and "₹26"
+	    String expectedPriceValue = expectedPackSizePrice[1];  // ₹26
+	    
+	    System.out.println("Expected price: " + expectedPriceValue);  
+	    assertEquals(actualpacksizePrice, expectedPriceValue, "Price does not match for the pack size");
 	}
 
 }

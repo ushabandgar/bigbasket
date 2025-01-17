@@ -78,15 +78,13 @@ public class Keyword {
 		element.sendKeys(enter);
 
 	}
-<<<<<<< HEAD
-=======
-	
+
 	public void mouseHoverOn(WebElement element) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).perform();
 
 	}
->>>>>>> origin/master
+
 
 	public void switchToChildWindowHandle() {
 		Set<String> allWindows = driver.getWindowHandles();
@@ -170,7 +168,6 @@ public class Keyword {
 	
 
 
-<<<<<<< HEAD
 	public void clickOnYourCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" & ", "-");
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(", ", "-");
@@ -181,6 +178,5 @@ public class Keyword {
 		categoryName.click();
 	}
 
-=======
->>>>>>> origin/master
+
 }

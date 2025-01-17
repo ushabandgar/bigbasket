@@ -7,7 +7,7 @@ import com.bigbasket.base.*;
 
 public class ProductSearchPage {
 
-	@FindBy(css = "li.PaginateItems___StyledLi-sc-1yrbjdr-0")
+	@FindBy(css = "div.SKUDeck___StyledDiv-sc-1e5d9gk-0")
 	WebElement ClickonProduct;
 
 	@FindBy(css = "div.SKUDeck___StyledDiv-sc-1e5d9gk-0 div h3:nth-child(1)")
@@ -26,6 +26,7 @@ public class ProductSearchPage {
 	}
 
 	public void clickOnProduct() {
+		WaitFor.visibilityOfElement(ClickonProduct);
 		keyword.clickOn(ClickonProduct);
 		System.out.println("Clicked on product.");
 
