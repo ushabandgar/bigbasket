@@ -5,40 +5,51 @@ import org.testng.annotations.Test;
 import com.bigbasket.pages.HomePage;
 
 public class SearchProductTests {
+	
 	@Test
-	public void verifySearchTextBoxVisibleOrNot() {
+	public void verifySearchTextBoxVisibleOnThePageOrNot() {
 		HomePage page = new HomePage();
-		page.verifySearchTextBoxVisibleOrNot();
+		page.verifySearchTextBoxVisibleOnThePageOrNot();
+
 	}
 
 	@Test
-	public void verifyUserCanableToTypeTextIntoSearchBar() {
+	public void verifyThatUserCanAbleToTypeTextIntoTheSearchBar() {
 		HomePage page = new HomePage();
-		page.verifyUserCanAbleToTextIntoSearchTextBox();
-	}
+		page.verifyThatUserCanAbleToTypeTextIntoTheSearchBar();
 
-	public void verifyUserCanAbleToEnterTextIntoTextBox() {
-		HomePage page = new HomePage();
-		page.verifyUserCanAbleToTextIntoSearchTextBox();
 	}
 
 	@Test
-	public void verifyEnterTextPlaceholderTextIsEmpty() {
+	public void verifyThePlaceholderTextIsDisplayedWhenTheSearchBarIsEmpty() {
 		HomePage page = new HomePage();
-		page.verifyEnterTextWhenPlaceholderTextIsEmpty();
+		page.verifyThePlaceholderTextIsDisplayedWhenTheSearchBarIsEmpty();
+
 	}
 
 	@Test
-	public void verifyRelevantResultIsDispalyedWhenEnterText() throws InterruptedException {
+	public void verifyThatRelevantSearchResultsAreDisplayedWhenValidTextIsEntered() throws InterruptedException {
 		HomePage page = new HomePage();
-		page.verifyRelevantResultIsDispalyedWhenEnterText();
-}
-
-	@Test
-	public void verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnter() {
-		HomePage page = new HomePage();
-		page.verifyBehaviourOfSearchbarWhenLeftEmptyAndPressEnter();
+		page.verifyThatRelevantSearchResultsAreDisplayedWhenValidTextIsEntered();
 
 	}
+
+	@Test
+	public void verifyThebBehaviourWhenThSearchbBarIsLeftEmptyAndUserPressTheEnter() {
+		HomePage page = new HomePage();
+		page.verifyThebBehaviourWhenThSearchbBarIsLeftEmptyAndUserPressTheEnter();
+
+	}
+	
+
+	@Test
+	public void verifyWhenEnterPartialTextIntoSerachbarThenResultShouldBeDisplayeOrNot() throws InterruptedException {
+		HomePage page = new HomePage();
+		page.EnterPartialTextIntoTextBox();
+		page.getAllSearchResultDescriptionWhenEnterPartialText();
+		page.verifyWhenEnterPartialTextIntoSerachbarThenResultShouldBeDisplayeOrNot();
+
+	}
+
 
 }

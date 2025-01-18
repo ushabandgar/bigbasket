@@ -16,6 +16,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Optional;
 
+import com.bigbasket.pages.HomePage;
+import com.bigbasket.pages.ShopByCategoryPage;
+
 public class Keyword {
 
 	public static RemoteWebDriver driver;
@@ -67,7 +70,7 @@ public class Keyword {
 	}
 
 	// it take webelement and text
-	public void sendkeys(WebElement element, String text) {
+	public static void sendkeys(WebElement element, String text) {
 		element.sendKeys(text);
 	}
 
@@ -75,7 +78,7 @@ public class Keyword {
 		element.sendKeys(enter);
 
 	}
-	
+
 	public void mouseHoverOn(WebElement element) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).perform();
@@ -160,8 +163,16 @@ public class Keyword {
 				"Headphones & Earphones", "Speakers & Microphones");
 		return expectedCategories;
 	}
-	
-	
 
+
+	public void clickOnYourCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
+		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" & ", "-");
+		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(", ", "-");
+		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" ", "-");
+		WebElement categoryName = HomePage.shopByCategoryMenu.findElement(
+				By.xpath("//div[@class=\"CategoryMenu___StyledMenuItems-sc-d3svbp-4 fpskRu\"]/nav/ul/li/a[@href=\"/cl/"
+						+ categoryNameInLowerCaseOnly + "/?nc=nb\"]"));
+		categoryName.click();
+	}
 
 }
