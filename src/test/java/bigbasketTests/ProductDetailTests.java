@@ -2,11 +2,12 @@ package bigbasketTests;
 import java.io.IOException;
 
 import org.testng.annotations.Test;
-
 import com.bigbasket.base.*;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
+
+
 public class ProductDetailTests extends TestBase{
 
 	@Test
@@ -19,6 +20,10 @@ public class ProductDetailTests extends TestBase{
 
 	@Test
 	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() {
+		HomePage homePageFactory = new HomePage();
+		homePageFactory.clickOnSearchText();
+		homePageFactory.sendProductName();
+		homePageFactory.verifyUrlAfterSearch();
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -32,6 +37,10 @@ public class ProductDetailTests extends TestBase{
 
 	@Test
 	public void verifyWhenUserClickOnProductThenProductPageURlchanged() {
+		HomePage homePageFactory = new HomePage();
+		homePageFactory.clickOnSearchText();
+		homePageFactory.sendProductName();
+		homePageFactory.verifyUrlAfterSearch();
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -41,10 +50,14 @@ public class ProductDetailTests extends TestBase{
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
-}
 
+	}
 	@Test
-	public void verifyWhenUserClickOnProductThenProductUrlFullyLoaded() {
+	public void verifyWhenUserClickOnProductThenProductUrlLoadFully() {
+		HomePage homePageFactory = new HomePage();
+		homePageFactory.clickOnSearchText();
+		homePageFactory.sendProductName();
+		homePageFactory.verifyUrlAfterSearch();
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();

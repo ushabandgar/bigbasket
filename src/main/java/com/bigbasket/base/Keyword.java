@@ -85,7 +85,6 @@ public class Keyword {
 
 	}
 
-
 	public void switchToChildWindowHandle() {
 		Set<String> allWindows = driver.getWindowHandles();
 		String parentWindow = driver.getWindowHandle();
@@ -164,8 +163,6 @@ public class Keyword {
 				"Headphones & Earphones", "Speakers & Microphones");
 		return expectedCategories;
 	}
-	
-	
 
 
 	public void clickOnYourCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
