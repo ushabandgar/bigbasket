@@ -193,6 +193,9 @@ public class ProductDetailTests extends TestBase{
 	
 	}
 	
+	public  void testmethod() {
+		System.out.println("For Testing");
+	}
 	
 	
 
