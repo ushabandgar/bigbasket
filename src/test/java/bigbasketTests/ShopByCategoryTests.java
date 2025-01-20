@@ -3,14 +3,17 @@ package bigbasketTests;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.bigbasket.Listeners.TestListener;
 import com.bigbasket.base.Keyword;
 import com.bigbasket.base.TestBase;
 import com.bigbasket.base.WaitFor;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ShopByCategoryPage;
 
+@Listeners(TestListener.class)
 public class ShopByCategoryTests extends TestBase {
 
 	Keyword keyword = new Keyword();
