@@ -12,7 +12,6 @@ import com.bigbasket.base.*;
 
 public class ProductDetailPage {
 	Keyword keyword = new Keyword();
-
 	@FindBy(css = "section.Image___StyledSection-sc-1nc1erg-0")
 	WebElement productImage;
 
@@ -22,56 +21,46 @@ public class ProductDetailPage {
 	@FindBy(css = "td.fLZywG")
 	WebElement expectedproductprice;
 
+	@FindBy(css = "span.Pricing___StyledLabel-sc-pldi2d-1")
+	WebElement actualProductPrice;
+
 	@FindBy(css="section.jFkiCb div.w-full:nth-child(2) div.border-silverSurfer-400 div.w-40:nth-child(2) span.cWTZQL span.bvikaK:nth-child(1)")
 	WebElement packsize500ml;
 	
 	public ProductDetailPage() {
-
 		PageFactory.initElements(Keyword.driver, this);
 	}
 
 	public void switchWindowOnproductDetailPage() {
 		keyword.switchToWindowByTitle("Buy Amul Taaza Milk Online at Best Price of Rs 56 - bigbasket");
-		System.out.println("driver switch on Product detail page");
-
 	}
 
 	public void verifyAfterClickOnProductThenProductUrlTitleChanged() {
-		String currentTitle = Keyword.driver.getTitle();
-		keyword.print("Current title: " + currentTitle);
-		assertTrue(currentTitle.contains("Buy Amul Taaza Milk Online at Best Price"),
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd/");
+	    String currentTitle = Keyword.driver.getTitle();
+	    System.out.println("Current title: " + currentTitle);
+	    assertTrue(currentTitle.contains("Buy Amul Taaza Milk Online at Best Price of Rs 56 - bigbasket"),
 				"The title did not change to the product page title.");
-	}
-
-	public void verifyAfterClickOnProductThenProductUrlChanged() {
-		String currentURL = Keyword.driver.getCurrentUrl();
-		keyword.print("Current URL: " + currentURL);
-		assertTrue(currentURL.contains("https://www.bigbasket.com/pd/"),
-				"The url did not change to the product page title.");
 	}
 
 	public void CheckProductImageToverifyImageloadingSuccessfully() {
 		WaitFor.visibilityOfElement(productImage);
 		assertTrue(productImage.isDisplayed(), "Product image is not displayed, page might not be fully loaded.");
-		System.out.println("Checked a product image loading.");
-
 	}
 
 	public void getexpectedProductDetailTitleText() {
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
 		System.out.println("Expected Product Title: " + expectedProductTitleText.getText());
-
 	}
 
 	public void verifyActualAndExpectedProductText() {
 		assertTrue(expectedProductTitleText.getText().contains("Taaza Milk"),
 				"Expected product title does not contain 'Taaza Milk'");
-
 	}
 
 	public void getExpectedProductDetailPagePrice() {
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
-		System.out.println("Actual Product Title: " + expectedproductprice.getText());
+		System.out.println("Expected Product Title: " + expectedproductprice.getText());
 	}
 
 	public void verifyActualAndExpectedProductPrice() {
@@ -81,8 +70,7 @@ public class ProductDetailPage {
 
 	public void CheckProductUrlLoadingSuccessfully() {
 		String currentUrl = Keyword.driver.getCurrentUrl();
-		keyword.print("Current title: " + currentUrl);
-
+		assertTrue(currentUrl.contains("https://www.bigbasket.com/pd"));
 	}
 
 	public void hoverOnImage() {
@@ -93,12 +81,14 @@ public class ProductDetailPage {
 	public void verifyHoverFeatureWorks() {
 		assertTrue(productImage.isDisplayed(), "Hover effect did not make the zoomed image visible.");
 	}
-	
+
+
 	public void verifyclickFucntinalityOnProductImageGallaryOnebyOne() {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
 		for (int i = 0; i <= 4; i++) {
 			String imageSelector = "#thumb-" + i;
-			List<WebElement> productImages = WaitFor
-					.visibilityOfElements(Keyword.driver.findElements(By.cssSelector(imageSelector)));
+			List<WebElement> productImages = 
+					WaitFor.visibilityOfElements(Keyword.driver.findElements(By.cssSelector(imageSelector)));
 			for (WebElement images : productImages) {
 				WaitFor.visibilityOfElement(images);
 				images.click();
@@ -116,6 +106,7 @@ public class ProductDetailPage {
 		System.out.println("₹ currency symbol available");
 	}
 	
+	
 	public void verifyAfterclickOnProductPackSizeFor500mlProductPriceWillChange() {
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
 		WaitFor.visibilityOfElement(packsize500ml);
@@ -123,7 +114,6 @@ public class ProductDetailPage {
 	    System.out.println("actualpacksizePrice: "+actualpacksizePrice); 
 	    keyword.clickOn(packsize500ml);
 
-	   
 	    WaitFor.visibilityOfElement(expectedproductprice);
 	    String price = expectedproductprice.getText(); 
 	    
@@ -134,4 +124,7 @@ public class ProductDetailPage {
 	    assertEquals(actualpacksizePrice, expectedPriceValue, "Price does not match for the pack size");
 	}
 
+
+
+	
 }

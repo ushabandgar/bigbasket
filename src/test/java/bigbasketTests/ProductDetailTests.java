@@ -1,5 +1,5 @@
 package bigbasketTests;
-import java.io.IOException;
+
 
 import org.testng.annotations.Test;
 import com.bigbasket.base.*;
@@ -27,11 +27,10 @@ public class ProductDetailTests extends TestBase{
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
-		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
+		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
 	}
 
@@ -145,12 +144,12 @@ public class ProductDetailTests extends TestBase{
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
-		productDetailPage.verifyclickFucntinalityOnProductImageGallaryOnebyOne();
+	    productDetailPage.verifyclickFucntinalityOnProductImageGallaryOnebyOne();
 
 	}
 
 	@Test
-	public void verifyGallaryImagesForProductAreHighQuality() throws IOException {
+	public void verifyGallaryImagesForProductAreHighQuality(){
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -193,10 +192,4 @@ public class ProductDetailTests extends TestBase{
 	
 	}
 	
-	public  void testmethod() {
-		System.out.println("For Testing");
-	}
-	
-	
-
 }

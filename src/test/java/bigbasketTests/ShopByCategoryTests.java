@@ -70,7 +70,7 @@ public class ShopByCategoryTests extends TestBase {
 		homepage.clickOnCategory("fashion");
 		Thread.sleep(3000);
 		
-		String displayedCount = keyword.driver
+		String displayedCount = Keyword.driver
 				.findElement(
 						By.cssSelector("span[class=\"Label-sc-15v1nk5-0 Title___StyledLabel-sc-800s46-0 gJxZPQ lnIjdY\"]"))
 				.getText();
