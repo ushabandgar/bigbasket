@@ -51,8 +51,14 @@ public class WaitFor {
 
 	}
 
+
 	public static void elementToBeDisplayed(WebElement element) {
 		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	public static void elementToBeClickable(WebElement element) {
+
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+
 		
 	}
 }

@@ -1,16 +1,17 @@
 package bigbasketTests;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.bigbasket.Listeners.TestListener;
 import com.bigbasket.base.Keyword;
 import com.bigbasket.base.TestBase;
+import com.bigbasket.base.WaitFor;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ShopByCategoryPage;
 
+@Listeners(TestListener.class)
 public class ShopByCategoryTests extends TestBase {
 
 	Keyword keyword = new Keyword();
@@ -62,31 +63,29 @@ public class ShopByCategoryTests extends TestBase {
 
 	}
 
-	//working on this test case dont review it
+	//working on this test case don't review it
 	@Test
 	public void verifyProductCountMatchesActualNumberProductsAvailableUnderThatCategory() throws InterruptedException {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
 		homepage.clickOnCategory("fashion");
 		Thread.sleep(3000);
-		
-		String displayedCount = Keyword.driver
-				.findElement(
-						By.cssSelector("span[class=\"Label-sc-15v1nk5-0 Title___StyledLabel-sc-800s46-0 gJxZPQ lnIjdY\"]"))
+		String displayedCount = Keyword.driver.findElement(
+				By.cssSelector("span[class=\"Label-sc-15v1nk5-0 Title___StyledLabel-sc-800s46-0 gJxZPQ lnIjdY\"]"))
 				.getText();
 		displayedCount = displayedCount.replace("(", "");
 		displayedCount = displayedCount.replace(")", "");
-		System.out.println(displayedCount);
+		System.out.println("displayedCount: "+displayedCount);
 		Thread.sleep(5000);
-		int actualProductCount = keyword.driver
+		int actualProductCount = Keyword.driver
 				.findElements(By.cssSelector("div[class=\"SKUDeck___StyledDiv-sc-1e5d9gk-0 eA-dmzP\"]")).size();
-		System.out.println(actualProductCount);
+		System.out.println("actualProductCount: "+actualProductCount);
 		Assert.assertEquals(actualProductCount, displayedCount);
 	}
-	
-	//this is done can review.Tried wait instead of sleep but not working
+
+	// this is done can review.Tried wait instead of sleep but not working
 	@Test
-	public void verifyNavigationToHomePageFromCatgeoryPage() throws InterruptedException{
+	public void verifyNavigationToHomePageByTappingOnHomeButtonFromCatgeoryPage() throws InterruptedException {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
 		homepage.clickOnCategory("fashion");
@@ -96,4 +95,26 @@ public class ShopByCategoryTests extends TestBase {
 		Thread.sleep(3000);
 		homepage.verifyNavigatedToHomePageFromCategoryPage();
 	}
+	@Test
+	public void verifyNavigationToHomePageByTappingOnBackButtonOfBrowser() throws InterruptedException {
+		HomePage homepage = new HomePage();
+		homepage.clickOnShopByCategoryMenu();
+		homepage.clickOnCategory("fashion");
+		Thread.sleep(3000);
+		ShopByCategoryPage categoryPage = new ShopByCategoryPage();
+		categoryPage.clickOnBackButtonOfBrowserFromCategoryPage();
+		Thread.sleep(3000);
+		homepage.verifyNavigatedToHomePageFromCategoryPage();
+	}
+	@Test
+	public void verifyNoProductMessageWhenCategoryDoesNotHaveProducts() throws InterruptedException {
+		HomePage homepage = new HomePage();
+		homepage.clickOnShopByCategoryMenu();
+		homepage.clickOnCategory("apparel");	
+		WaitFor.untilUrlLoad("cl");
+		ShopByCategoryPage categoryPage = new ShopByCategoryPage();
+		categoryPage.verifyNoProductMessgae();
+	}
+	
+
 }
