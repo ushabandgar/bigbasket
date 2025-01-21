@@ -6,15 +6,21 @@ public class TestBase {
 
 	Keyword keyword=new Keyword();
 	
-	@BeforeMethod
+	@BeforeMethod(groups = "RegressionTests")
 	public void setUp() throws Exception {
 		keyword.openBrowser("Firefox");
 		keyword.launchUrl("https://www.bigbasket.com/");
 		keyword.maximizeBrowser();
 	}
 
-	@AfterMethod
-	public void tearDown() throws Exception {
-		keyword.quitBrowser();
+	
+	@AfterMethod(groups = "RegressionTests")
+	public void tearDown() {
+	    if (Keyword.driver != null) {
+	    	keyword.closeBrowser();
+	    }
 	}
+	
+	
+	
 }

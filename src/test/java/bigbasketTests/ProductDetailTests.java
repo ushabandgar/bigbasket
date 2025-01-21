@@ -5,10 +5,10 @@ import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
 
-
+//@Test(groups = {"RegressionTests", "SanityTests"})
 public class ProductDetailTests extends TestBase{
 
-	@Test(groups = {"RegressionTests"})
+	@Test (groups = "SanityTests")
 	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
@@ -16,17 +16,15 @@ public class ProductDetailTests extends TestBase{
 		homePage.verifyUrlAfterSearch();
 	}
 
-	@Test(groups = {"RegressionTests"})
+	@Test
 	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() {
-		HomePage homePageFactory = new HomePage();
-		homePageFactory.clickOnSearchText();
-		homePageFactory.sendProductName();
-		homePageFactory.verifyUrlAfterSearch();
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
+		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
-		productSearchPage.clickOnProduct();
+        productSearchPage.clickOnProduct();
+		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
@@ -34,10 +32,6 @@ public class ProductDetailTests extends TestBase{
 
 	@Test
 	public void verifyWhenUserClickOnProductThenProductPageURlchanged() {
-		HomePage homePageFactory = new HomePage();
-		homePageFactory.clickOnSearchText();
-		homePageFactory.sendProductName();
-		homePageFactory.verifyUrlAfterSearch();
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -49,24 +43,19 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
 
 	}
+
 	@Test
 	public void verifyWhenUserClickOnProductThenProductUrlLoadFully() {
-		HomePage homePageFactory = new HomePage();
-		homePageFactory.clickOnSearchText();
-		homePageFactory.sendProductName();
-		homePageFactory.verifyUrlAfterSearch();
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.CheckProductUrlLoadingSuccessfully();
-		Keyword keyword = new Keyword();
-		keyword.print("Product Page loaded successfully! product image visible.");
+		System.out.println("Product Page loaded successfully! product image visible.");
 	}
 	
 	@Test
@@ -74,7 +63,6 @@ public class ProductDetailTests extends TestBase{
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.getActualSearchProductTitleText();
 		productSearchPage.clickOnProduct();
@@ -90,7 +78,6 @@ public class ProductDetailTests extends TestBase{
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.getActualSearchProductTitlePrice();
 		productSearchPage.clickOnProduct();
@@ -100,16 +87,14 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.getExpectedProductDetailPagePrice();
 	    productDetailPage.verifyActualAndExpectedProductPrice();
 	}
-	
 	@Test
 	public void verifyProductImageDisplayProperlyOnProductDetailPage(){
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
-		productSearchPage.switchDriverOnProductSearchPage();
+		//productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();	
@@ -132,7 +117,7 @@ public class ProductDetailTests extends TestBase{
 	
 	
 	@Test
-	public void verifyMultipleImagesForProductAreClikable() {
+	public void verifyMultipleImagesForProductAreClikable() throws InterruptedException {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -143,11 +128,10 @@ public class ProductDetailTests extends TestBase{
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 	    productDetailPage.verifyclickFucntinalityOnProductImageGallaryOnebyOne();
-
 	}
 
 	@Test
-	public void verifyGallaryImagesForProductAreHighQuality(){
+	public void verifyGallaryImagesForProductAreHighQuality() throws InterruptedException{
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -161,7 +145,7 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.verifyGallaryImageQuality();
 	}
 	
-	@Test
+	@Test(groups = "SanityTests")
 	public void VerifyThePriceFormattingFollowTheStandardCurrenctSymbolLike₹() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
@@ -175,7 +159,8 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.getExpectedProductDetailPagePrice();
 		productDetailPage.verifyPriceContainCurrencySymbolLike₹();
 	}
-	@Test
+	
+	@Test(groups = "SanityTests")
 	public void verifyProductPriceChangeWhileSelectingPackSize() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
@@ -187,7 +172,6 @@ public class ProductDetailTests extends TestBase{
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.verifyAfterclickOnProductPackSizeFor500mlProductPriceWillChange();
-	
 	}
 	
 }

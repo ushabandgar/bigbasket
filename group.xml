@@ -4,13 +4,16 @@
 	<groups>
 		<run>
 			<include name="RegressionTests"></include>
+			<include name="SanityTests"></include>
 
 		</run>
 	</groups>
 
 	<test name="ProductDetailTests">
 		<classes>
-			<class name="bigbasketTests.ProductDetailTests" />
+			<class name="bigbasketTests.ProductDetailTests"/>
+			<class name="bigbasketTests.ShopByCategoryTests"/>
+			<class name="bigbasketTests.SearchProductTests"/>
 		</classes>
 	</test>
 </suite>

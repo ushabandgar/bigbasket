@@ -168,18 +168,29 @@ public class HomePage {
 		softlyAssert.assertEquals(actualCategoryNames, expectedCategoryNames);
 		softlyAssert.assertAll();
 	}
-
+	
 	public void clickOnSearchText() {
 		WaitFor.visibilityOfElement(searchText);
 		searchText.click();
 		System.out.println("Clicked on search text field.");
+
 	}
 
 	public void sendProductName() {
+		WaitFor.elementTobeVisible(searchText);
 		searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
 		searchText.sendKeys(Keys.ENTER);
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps/");
+
 	}
+
+	public void verifyUrlAfterSearch() {
+		String currentURL = Keyword.driver.getCurrentUrl();
+		keyword.print("Current URL: " + currentURL);
+		assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
+
+	}
+
 
 	public void verifyShopByCategoryCollapsesOnClickAfterExapands() {
 		String classNameAfterExapnd = shopByCategoryMenu.getAttribute("class");
@@ -214,12 +225,7 @@ public class HomePage {
 		softlyAssert.assertAll();
 	}
 
-	public void verifyUrlAfterSearch() {
-		String currentURL = Keyword.driver.getCurrentUrl();
-		keyword.print("Current URL: " + currentURL);
-		assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
-
-	}
+	
 
 	public void clickOnShopByCategoryMenu() {
 		keyword.clickOn(shopByCategoryMenu);
@@ -231,7 +237,7 @@ public class HomePage {
 	}
 
 	public void verifyNavigatedToHomePageFromCategoryPage() {
-		String urlAfterNavigationToHome = keyword.driver.getCurrentUrl();
+		String urlAfterNavigationToHome = Keyword.driver.getCurrentUrl();
 		assertTrue(urlAfterNavigationToHome.equals("https://www.bigbasket.com/"));
 	}
 }

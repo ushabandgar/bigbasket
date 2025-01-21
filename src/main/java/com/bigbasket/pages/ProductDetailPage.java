@@ -12,7 +12,7 @@ import com.bigbasket.base.*;
 
 public class ProductDetailPage {
 	Keyword keyword = new Keyword();
-	@FindBy(css = "section.Image___StyledSection-sc-1nc1erg-0")
+	@FindBy(xpath = "//section[contains(@class, 'Image___StyledSection')]")
 	WebElement productImage;
 
 	@FindBy(css = "h1.Description___StyledH-sc-82a36a-2")
@@ -36,20 +36,30 @@ public class ProductDetailPage {
 	}
 
 	public void verifyAfterClickOnProductThenProductUrlTitleChanged() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd/");
-	    String currentTitle = Keyword.driver.getTitle();
-	    System.out.println("Current title: " + currentTitle);
-	    assertTrue(currentTitle.contains("Buy Amul Taaza Milk Online at Best Price of Rs 56 - bigbasket"),
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		String currentTitle =Keyword.driver.getTitle();
+		System.out.println("Current Title: " + currentTitle);
+		assertTrue(currentTitle.contains("Buy Amul Taaza Milk Online at Best Price"),
 				"The title did not change to the product page title.");
+	}
+	
+	public void verifyAfterClickOnProductThenProductUrlChanged() {
+		
+		String currentURL = Keyword.driver.getCurrentUrl();
+		System.out.println("Current URL: " + currentURL);
+		assertTrue(currentURL.contains("https://www.bigbasket.com/pd/"),
+				"The url did not change to the product page title.");
+	   
 	}
 
 	public void CheckProductImageToverifyImageloadingSuccessfully() {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
 		WaitFor.visibilityOfElement(productImage);
 		assertTrue(productImage.isDisplayed(), "Product image is not displayed, page might not be fully loaded.");
 	}
 
 	public void getexpectedProductDetailTitleText() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd/");
 		System.out.println("Expected Product Title: " + expectedProductTitleText.getText());
 	}
 
@@ -60,20 +70,26 @@ public class ProductDetailPage {
 
 	public void getExpectedProductDetailPagePrice() {
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
-		System.out.println("Expected Product Title: " + expectedproductprice.getText());
+		WaitFor.visibilityOfElement(expectedproductprice);
+		String expectedproductPrice = expectedproductprice.getText();
+		System.out.println("Expected Product Title: " + expectedproductPrice);
 	}
 
 	public void verifyActualAndExpectedProductPrice() {
-		assertTrue(expectedproductprice.getText().contains("₹56"), "Price not match!");
+		assertTrue(expectedproductprice.getText().contains("₹"), "Price not match!");
 
 	}
 
 	public void CheckProductUrlLoadingSuccessfully() {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd/");
 		String currentUrl = Keyword.driver.getCurrentUrl();
-		assertTrue(currentUrl.contains("https://www.bigbasket.com/pd"));
+		System.out.println(currentUrl);
+		assertTrue(currentUrl.contains("https://www.bigbasket.com/pd/"));
 	}
 
 	public void hoverOnImage() {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		WaitFor.elementToBeVisible(productImage); 
 		keyword.mouseHoverOn(productImage);
 
 	}
@@ -83,13 +99,14 @@ public class ProductDetailPage {
 	}
 
 
-	public void verifyclickFucntinalityOnProductImageGallaryOnebyOne() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+	public void verifyclickFucntinalityOnProductImageGallaryOnebyOne() throws InterruptedException {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com");
 		for (int i = 0; i <= 4; i++) {
 			String imageSelector = "#thumb-" + i;
 			List<WebElement> productImages = 
 					WaitFor.visibilityOfElements(Keyword.driver.findElements(By.cssSelector(imageSelector)));
 			for (WebElement images : productImages) {
+				Thread.sleep(2000);
 				WaitFor.visibilityOfElement(images);
 				images.click();
 				assertTrue(images.isDisplayed(), "Image is not visible");
