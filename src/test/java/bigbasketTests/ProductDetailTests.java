@@ -1,6 +1,4 @@
 package bigbasketTests;
-
-
 import org.testng.annotations.Test;
 import com.bigbasket.base.*;
 import com.bigbasket.pages.HomePage;
@@ -10,7 +8,7 @@ import com.bigbasket.pages.ProductSearchPage;
 
 public class ProductDetailTests extends TestBase{
 
-	@Test
+	@Test(groups = {"RegressionTests"})
 	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
@@ -18,7 +16,7 @@ public class ProductDetailTests extends TestBase{
 		homePage.verifyUrlAfterSearch();
 	}
 
-	@Test
+	@Test(groups = {"RegressionTests"})
 	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() {
 		HomePage homePageFactory = new HomePage();
 		homePageFactory.clickOnSearchText();

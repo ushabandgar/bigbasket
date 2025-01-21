@@ -24,7 +24,6 @@ import com.bigbasket.pages.ShopByCategoryPage;
 public class Keyword {
 
 	public static RemoteWebDriver driver;
-	@Parameters("browser-name")
 	public void openBrowser(@Optional String browserName) {
 		if (browserName == null) {
 			System.out.println("Launching Chrome by default");
@@ -166,7 +165,6 @@ public class Keyword {
 		return expectedCategories;
 	}
 
-
 	public void clickOnYourCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" & ", "-");
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(", ", "-");
@@ -176,6 +174,5 @@ public class Keyword {
 						+ categoryNameInLowerCaseOnly + "/?nc=nb\"]"));
 		categoryName.click();
 	}
-
 
 }

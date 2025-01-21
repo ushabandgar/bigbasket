@@ -17,6 +17,9 @@ import org.testng.asserts.SoftAssert;
 import com.bigbasket.base.Keyword;
 
 public class HomePage {
+	public HomePage() {
+		PageFactory.initElements(Keyword.driver, this);
+	}
 	Keyword keyword = new Keyword();
 
 	@FindBy(css = "button[id*='headlessui-menu-button-:R5bab6:']")
@@ -34,9 +37,7 @@ public class HomePage {
 	@FindBy(css = "div.Header___StyledQuickSearch2-sc-19kl9m3-0 input.flex-1")
 	WebElement searchText;
 
-	public HomePage() {
-		PageFactory.initElements(Keyword.driver, this);
-	}
+	
 
 	public void verifySearchTextBoxVisibleOnThePageOrNot() {
 		Assert.assertTrue(searchTextBox.isDisplayed());
