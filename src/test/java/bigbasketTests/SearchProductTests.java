@@ -1,12 +1,23 @@
 package bigbasketTests;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.bigbasket.Listeners.TestListener;
+import com.bigbasket.base.Keyword;
+import com.bigbasket.base.TestBase;
 import com.bigbasket.pages.HomePage;
 
+@Listeners(TestListener.class)
+public class SearchProductTests extends TestBase {
+
+	Keyword keyword = new Keyword();
+
+	@Test
+@Test(groups = {"RegressionTests", "SanityTests"})
 public class SearchProductTests {
 	
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifySearchTextBoxVisibleOnThePageOrNot() {
 		HomePage page = new HomePage();
 		page.verifySearchTextBoxVisibleOnThePageOrNot();
@@ -27,7 +38,7 @@ public class SearchProductTests {
 
 	}
 
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyThatRelevantSearchResultsAreDisplayedWhenValidTextIsEntered() throws InterruptedException {
 		HomePage page = new HomePage();
 		page.verifyThatRelevantSearchResultsAreDisplayedWhenValidTextIsEntered();
@@ -40,9 +51,8 @@ public class SearchProductTests {
 		page.verifyThebBehaviourWhenThSearchbBarIsLeftEmptyAndUserPressTheEnter();
 
 	}
-	
 
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyWhenEnterPartialTextIntoSerachbarThenResultShouldBeDisplayeOrNot() throws InterruptedException {
 		HomePage page = new HomePage();
 		page.EnterPartialTextIntoTextBox();
@@ -50,6 +60,5 @@ public class SearchProductTests {
 		page.verifyWhenEnterPartialTextIntoSerachbarThenResultShouldBeDisplayeOrNot();
 
 	}
-
 
 }

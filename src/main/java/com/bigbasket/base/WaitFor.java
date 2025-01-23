@@ -7,15 +7,16 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitFor {
-	public static FluentWait<WebDriver> wait;
+	public static FluentWait<RemoteWebDriver> wait;
 
 	static {
-		wait = new FluentWait<WebDriver>(Keyword.driver);
+		wait = new FluentWait<RemoteWebDriver>(Keyword.driver);
 		wait.withTimeout(Duration.ofSeconds(20));
 		wait.ignoring(NoSuchElementException.class);
 	}
@@ -29,8 +30,8 @@ public class WaitFor {
 		try {
 			wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (StaleElementReferenceException e) {
-
 			wait.until(ExpectedConditions.visibilityOf(element));
+			
 		}
 	}
 
@@ -46,14 +47,20 @@ public class WaitFor {
 	}
 
 	public static void untilUrlLoad(String url) {
-		WebDriverWait wait = new WebDriverWait(Keyword.driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.urlContains(url));
 
 	}
 
+	public static void elementToBeDisplayed(WebElement element) {
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
 	public static void elementToBeClickable(WebElement element) {
-
 		wait.until(ExpectedConditions.elementToBeClickable(element));
-		
+			
+	}
+	
+	public static void elementToBeVisible(WebElement element) {
+	    wait.until(ExpectedConditions.visibilityOf(element));
 	}
 }
