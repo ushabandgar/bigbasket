@@ -16,6 +16,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import com.beust.jcommander.Parameter;
 import com.bigbasket.pages.HomePage;
 
 public class Keyword {
@@ -80,20 +81,21 @@ public class Keyword {
 	}
 
 	public void mouseHoverOn(WebElement element) {
-		Actions actions = new Actions(driver);
+		Actions actions = new Actions(Keyword.driver);
 		actions.moveToElement(element).perform();
 
 	}
 
 	public void switchToChildWindowHandle() {
-		Set<String> allWindows = driver.getWindowHandles();
-		String parentWindow = driver.getWindowHandle();
-		for (String handle : allWindows) {
-			if (!handle.equals(parentWindow)) {
-				driver.switchTo().window(handle);
+		Set<String> windowHandles = driver.getWindowHandles();
+		String originalWindow = driver.getWindowHandle();
+		for (String windowHandle : windowHandles) {
+			if (!windowHandle.equals(originalWindow)) {
+				driver.switchTo().window(windowHandle);
 				break;
 			}
 		}
+
 	}
 
 	public void switchToWindowByTitle(String expectedTitleSubstring) {
@@ -164,7 +166,6 @@ public class Keyword {
 		return expectedCategories;
 	}
 
-
 	public void clickOnYourCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(" & ", "-");
 		categoryNameInLowerCaseOnly = categoryNameInLowerCaseOnly.replace(", ", "-");
@@ -176,7 +177,7 @@ public class Keyword {
 	}
 
 	public void clickOnBackButtonOfBrowser() {
-				driver.navigate().back();
+		driver.navigate().back();
 	}
 
 }

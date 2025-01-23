@@ -15,6 +15,9 @@ import org.testng.asserts.SoftAssert;
 import com.bigbasket.base.Keyword;
 
 public class HomePage {
+	public HomePage() {
+		PageFactory.initElements(Keyword.driver, this);
+	}
 	Keyword keyword = new Keyword();
 
 	@FindBy(css = "button[id*='headlessui-menu-button-:R5bab6:']")
@@ -32,9 +35,7 @@ public class HomePage {
 	@FindBy(css = "div.Header___StyledQuickSearch2-sc-19kl9m3-0 input.flex-1")
 	WebElement searchText;
 
-	public HomePage() {
-		PageFactory.initElements(Keyword.driver, this);
-	}
+	
 
 	public void verifySearchTextBoxVisibleOnThePageOrNot() {
 		Assert.assertTrue(searchTextBox.isDisplayed());
@@ -167,50 +168,20 @@ public class HomePage {
 		softlyAssert.assertEquals(actualCategoryNames, expectedCategoryNames);
 		softlyAssert.assertAll();
 	}
-
+	
 	public void clickOnSearchText() {
 		WaitFor.visibilityOfElement(searchText);
 		searchText.click();
 		System.out.println("Clicked on search text field.");
+
 	}
 
 	public void sendProductName() {
+		WaitFor.elementTobeVisible(searchText);
 		searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
 		searchText.sendKeys(Keys.ENTER);
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
-	}
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps/");
 
-	public void verifyShopByCategoryCollapsesOnClickAfterExapands() {
-		String classNameAfterExapnd = shopByCategoryMenu.getAttribute("class");
-		clickOnShopByCategoryMenu();
-		String classNameAfterCollapse = shopByCategoryMenu.getAttribute("class");
-		Assert.assertFalse(classNameAfterCollapse.equals(classNameAfterExapnd));
-	}
-
-	public boolean clickOnAllCategoriesOneByOne() throws InterruptedException {
-		boolean areClickable=false;
-		keyword.maximizeBrowser();
-		for (WebElement category : categoryList) {
-			WaitFor.visibilityOfElement(category);
-			String categoryNames = category.getText().toLowerCase();
-			clickOnCategory(categoryNames);
-			System.out.println(categoryNames);
-			Thread.sleep(5000);
-			clickOnShopByCategoryMenu();
-			if (categoryNames.equals("Paan Corner")) {
-				areClickable=true;
-				System.out.println("flag after last parent category : "+areClickable);
-				break;
-			}
-		}
-		return areClickable;
-	}
-
-	public void verifyAllCategoriesAreClickable() throws InterruptedException {
-		boolean flag=clickOnAllCategoriesOneByOne();
-		SoftAssert softlyAssert=new SoftAssert();
-		softlyAssert.assertTrue(flag,"All category are not clickable");
-		softlyAssert.assertAll();
 	}
 
 	public void verifyUrlAfterSearch() {
@@ -220,17 +191,53 @@ public class HomePage {
 
 	}
 
+
+	public void verifyShopByCategoryCollapsesOnClickAfterExapands() {
+		String classNameAfterExapnd = shopByCategoryMenu.getAttribute("class");
+		clickOnShopByCategoryMenu();
+		String classNameAfterCollapse = shopByCategoryMenu.getAttribute("class");
+		Assert.assertFalse(classNameAfterCollapse.equals(classNameAfterExapnd));
+	}
+
+	public boolean clickOnAllCategoriesOneByOne() throws InterruptedException {
+		boolean areClickable = false;
+		keyword.maximizeBrowser();
+		for (WebElement category : categoryList) {
+			WaitFor.visibilityOfElement(category);
+			String categoryNames = category.getText().toLowerCase();
+			clickOnCategory(categoryNames);
+			System.out.println(categoryNames);
+			Thread.sleep(5000);
+			clickOnShopByCategoryMenu();
+			if (categoryNames.equals("Paan Corner")) {
+				areClickable = true;
+				System.out.println("flag after last parent category : " + areClickable);
+				break;
+			}
+		}
+		return areClickable;
+	}
+
+	public void verifyAllCategoriesAreClickable() throws InterruptedException {
+		boolean flag = clickOnAllCategoriesOneByOne();
+		SoftAssert softlyAssert = new SoftAssert();
+		softlyAssert.assertTrue(flag, "All category are not clickable");
+		softlyAssert.assertAll();
+	}
+
+	
+
 	public void clickOnShopByCategoryMenu() {
 		keyword.clickOn(shopByCategoryMenu);
 	}
 
 	public void clickOnCategory(String categoryNameInLowerCaseOnly) throws InterruptedException {
-		 keyword.clickOnYourCategory(categoryNameInLowerCaseOnly);
-		 
+		keyword.clickOnYourCategory(categoryNameInLowerCaseOnly);
+
 	}
 
 	public void verifyNavigatedToHomePageFromCategoryPage() {
-		String urlAfterNavigationToHome=keyword.driver.getCurrentUrl();
+		String urlAfterNavigationToHome = Keyword.driver.getCurrentUrl();
 		assertTrue(urlAfterNavigationToHome.equals("https://www.bigbasket.com/"));
 	}
 }
