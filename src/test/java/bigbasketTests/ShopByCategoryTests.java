@@ -1,7 +1,6 @@
 package bigbasketTests;
-
-
 import org.openqa.selenium.By;
+
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -12,13 +11,13 @@ import com.bigbasket.base.TestBase;
 import com.bigbasket.base.WaitFor;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ShopByCategoryPage;
-
+@Test(groups = {"RegressionTests", "SanityTests"})
 @Listeners(TestListener.class)
 public class ShopByCategoryTests extends TestBase {
 
 	Keyword keyword = new Keyword();
 
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyShopByCategoryDropDownAvailable() {
 		HomePage homepage = new HomePage();
 		homepage.verifyShopByCategoryMenuIsAvailable();
@@ -46,7 +45,7 @@ public class ShopByCategoryTests extends TestBase {
 		homepage.verifyShopByCategoryCollapsesOnClickAfterExapands();
 	}
 
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyAllCategoriesAreClickable() throws InterruptedException {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
@@ -97,7 +96,7 @@ public class ShopByCategoryTests extends TestBase {
 		Thread.sleep(3000);
 		homepage.verifyNavigatedToHomePageFromCategoryPage();
 	}
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyNavigationToHomePageByTappingOnBackButtonOfBrowser() throws InterruptedException {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
