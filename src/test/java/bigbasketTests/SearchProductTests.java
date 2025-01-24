@@ -14,6 +14,10 @@ public class SearchProductTests extends TestBase {
 	Keyword keyword = new Keyword();
 
 	@Test
+@Test(groups = {"RegressionTests", "SanityTests"})
+public class SearchProductTests {
+	
+	@Test(groups = "SanityTests")
 	public void verifySearchTextBoxVisibleOnThePageOrNot() {
 		HomePage page = new HomePage();
 		page.verifySearchTextBoxVisibleOnThePageOrNot();
@@ -34,7 +38,7 @@ public class SearchProductTests extends TestBase {
 
 	}
 
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyThatRelevantSearchResultsAreDisplayedWhenValidTextIsEntered() throws InterruptedException {
 		HomePage page = new HomePage();
 		page.verifyThatRelevantSearchResultsAreDisplayedWhenValidTextIsEntered();
@@ -48,7 +52,7 @@ public class SearchProductTests extends TestBase {
 
 	}
 
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyWhenEnterPartialTextIntoSerachbarThenResultShouldBeDisplayeOrNot() throws InterruptedException {
 		HomePage page = new HomePage();
 		page.EnterPartialTextIntoTextBox();
