@@ -1,8 +1,19 @@
 package bigbasketTests;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.bigbasket.Listeners.TestListener;
+import com.bigbasket.base.Keyword;
+import com.bigbasket.base.TestBase;
 import com.bigbasket.pages.HomePage;
+
+@Listeners(TestListener.class)
+public class SearchProductTests extends TestBase {
+
+	Keyword keyword = new Keyword();
+
+	@Test
 @Test(groups = {"RegressionTests", "SanityTests"})
 public class SearchProductTests {
 	
@@ -40,7 +51,6 @@ public class SearchProductTests {
 		page.verifyThebBehaviourWhenThSearchbBarIsLeftEmptyAndUserPressTheEnter();
 
 	}
-	
 
 	@Test(groups = "SanityTests")
 	public void verifyWhenEnterPartialTextIntoSerachbarThenResultShouldBeDisplayeOrNot() throws InterruptedException {
@@ -50,6 +60,5 @@ public class SearchProductTests {
 		page.verifyWhenEnterPartialTextIntoSerachbarThenResultShouldBeDisplayeOrNot();
 
 	}
-
 
 }

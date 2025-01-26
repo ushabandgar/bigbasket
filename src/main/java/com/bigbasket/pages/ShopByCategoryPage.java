@@ -22,6 +22,12 @@ public class ShopByCategoryPage {
 	@FindBy(css="p[class=\"m-auto text-2xl font-light w-152 leading-lg\"]")
 	WebElement NoProductMessage;
 	
+	@FindBy(css="div[class=\"slug___StyledFilterByCategory-sc-1pgl3kl-2 ebgQYS\"]")
+	WebElement ShopByCatgeorySection;
+	
+	@FindBy(css="span[class=\"Label-sc-15v1nk5-0 FilterByCategory___StyledLabel-sc-c0pkxv-0 gJxZPQ bPmHlw\"]")
+	WebElement ShopByCategoryOnCategoryPage;
+	
 	public ShopByCategoryPage() {
 		PageFactory.initElements(Keyword.driver, this);
 	}
@@ -51,7 +57,7 @@ public class ShopByCategoryPage {
 	}
 	
 	public int getProductListAfterClickOnCategory(){
-		List<WebElement> productList=keyword.driver
+		List<WebElement> productList=Keyword.driver
 				.findElements(By.cssSelector("div[class=\"SKUDeck___StyledDiv-sc-1e5d9gk-0 eA-dmzP\"]"));
 		int productCount=productList.size();
 		return productCount;
@@ -72,5 +78,12 @@ public class ShopByCategoryPage {
 		keyword.clickOnBackButtonOfBrowser();
 	}
 
+	public void verifyShopByCategorySectionAvailableOnCategoryPage() {
+		if(ShopByCatgeorySection.isDisplayed()){
+			String ShopByCategoryText=ShopByCategoryOnCategoryPage.getText();
+			System.out.println(ShopByCategoryText);
+			Assert.assertTrue(ShopByCategoryText.equals("Shop By Category"));
+		}
+	}
 	
 }
