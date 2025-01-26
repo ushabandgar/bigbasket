@@ -9,14 +9,10 @@ import com.bigbasket.base.TestBase;
 import com.bigbasket.pages.HomePage;
 
 @Listeners(TestListener.class)
+@Test(groups = { "RegressionTests", "SanityTests" })
 public class SearchProductTests extends TestBase {
-
 	Keyword keyword = new Keyword();
 
-	@Test
-@Test(groups = {"RegressionTests", "SanityTests"})
-public class SearchProductTests {
-	
 	@Test(groups = "SanityTests")
 	public void verifySearchTextBoxVisibleOnThePageOrNot() {
 		HomePage page = new HomePage();
