@@ -1,8 +1,13 @@
 package com.bigbasket.pages;
+import java.time.Duration;
+
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bigbasket.base.*;
 
@@ -28,8 +33,9 @@ public class ProductSearchPage {
 
 	public void clickOnProduct() {
 	    try {
-	        WaitFor.elementToBeClickable(ClickonProduct);  
-	        ClickonProduct.click(); 
+	    	WebDriverWait wait = new WebDriverWait(Keyword.driver, Duration.ofSeconds(10));
+	        wait.until(ExpectedConditions.elementToBeClickable(ClickonProduct));
+	        ClickonProduct.click();  
 	        System.out.println("Clicked on product.");
 	    } catch (StaleElementReferenceException e) {
 	        System.out.println("StaleElementReferenceException caught. Retrying click...");
@@ -40,8 +46,6 @@ public class ProductSearchPage {
 	        System.out.println("Failed to click on product. Error: " + e.getMessage());
 	    }
 	}
-
-
 	public void switchDriverOnProductSearchPage() {
 		keyword.switchToChildWindowHandle();
 	    String title= Keyword.driver.getTitle();
