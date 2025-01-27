@@ -12,8 +12,6 @@ import com.bigbasket.pages.HomePage;
 @Test(groups = { "RegressionTests", "SanityTests" })
 public class SearchProductTests extends TestBase {
 	Keyword keyword = new Keyword();
-
-	@Test(groups = "SanityTests")
 	public void verifySearchTextBoxVisibleOnThePageOrNot() {
 		HomePage page = new HomePage();
 		page.verifySearchTextBoxVisibleOnThePageOrNot();
