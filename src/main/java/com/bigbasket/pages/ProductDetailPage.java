@@ -84,7 +84,9 @@ public class ProductDetailPage {
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd/");
 		String currentUrl = Keyword.driver.getCurrentUrl();
 		System.out.println(currentUrl);
+		System.out.println("Product Page loaded successfully! product image visible.");
 		assertTrue(currentUrl.contains("https://www.bigbasket.com/pd/"));
+		
 	}
 
 	public void hoverOnImage() {
@@ -107,7 +109,7 @@ public class ProductDetailPage {
 					WaitFor.visibilityOfElements(Keyword.driver.findElements(By.cssSelector(imageSelector)));
 			for (WebElement images : productImages) {
 				Thread.sleep(2000);
-				WaitFor.visibilityOfElement(images);
+				WaitFor.elementToBeClickable(images);
 				images.click();
 				assertTrue(images.isDisplayed(), "Image is not visible");
 			}
