@@ -13,11 +13,8 @@ public class SearchProductTests extends TestBase {
 
 	Keyword keyword = new Keyword();
 
-	@Test
-@Test(groups = {"RegressionTests", "SanityTests"})
-public class SearchProductTests {
-	
-	@Test(groups = "SanityTests")
+	@Test(groups = { "RegressionTests", "SanityTests" })
+
 	public void verifySearchTextBoxVisibleOnThePageOrNot() {
 		HomePage page = new HomePage();
 		page.verifySearchTextBoxVisibleOnThePageOrNot();
