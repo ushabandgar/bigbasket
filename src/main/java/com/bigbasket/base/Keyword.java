@@ -22,8 +22,8 @@ import com.bigbasket.pages.HomePage;
 public class Keyword {
 
 	public static RemoteWebDriver driver;
-	@Parameters("browser-name")
 
+	@Parameters("browser-name")
 	public void openBrowser(@Optional String browserName) {
 		if (browserName == null) {
 			System.out.println("Launching Chrome by default");
@@ -45,7 +45,9 @@ public class Keyword {
 	}
 
 	public void launchUrl(String url) {
-		driver.get(url);
+		
+			driver.get(url);
+		
 	}
 
 	public void clickOn(WebElement element) {
@@ -53,11 +55,15 @@ public class Keyword {
 	}
 
 	public void closeBrowser() {
-		driver.close();
+		
+			driver.close();
+		
 	}
 
 	public void quitBrowser() {
-		driver.quit();
+
+		driver.quit(); // This properly closes the browser and ends the WebDriver session
+
 	}
 
 	public void maximizeBrowser() {

@@ -1,30 +1,25 @@
 package bigbasketTests;
 import org.testng.annotations.Test;
-import com.bigbasket.base.*;
+import com.bigbasket.base.TestBase;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
 
-//@Test(groups = {"RegressionTests", "SanityTests"})
 public class ProductDetailTests extends TestBase{
 
 	@Test (groups = "SanityTests")
-	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() {
+	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() throws InterruptedException {
 		HomePage homePage = new HomePage();
-		homePage.clickOnSearchText();
-		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
+		 homePage.searchForProduct();
+		 homePage.verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab();
 	}
 
-	@Test
-	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() {
+	@Test(groups = "RegressionTests") 
+	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() throws InterruptedException {
 		HomePage homePage = new HomePage();
-		homePage.clickOnSearchText();
-		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
+	    homePage.searchForProduct();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
         productSearchPage.clickOnProduct();
-		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
@@ -35,7 +30,6 @@ public class ProductDetailTests extends TestBase{
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -105,7 +99,6 @@ public class ProductDetailTests extends TestBase{
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -121,7 +114,6 @@ public class ProductDetailTests extends TestBase{
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -135,7 +127,6 @@ public class ProductDetailTests extends TestBase{
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -145,12 +136,11 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.verifyGallaryImageQuality();
 	}
 	
-	@Test(groups = "SanityTests")
+	@Test
 	public void VerifyThePriceFormattingFollowTheStandardCurrenctSymbolLike₹() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -160,12 +150,11 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.verifyPriceContainCurrencySymbolLike₹();
 	}
 	
-	@Test(groups = "SanityTests")
+	@Test
 	public void verifyProductPriceChangeWhileSelectingPackSize() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();

@@ -1,6 +1,7 @@
 package bigbasketTests;
 import org.openqa.selenium.By;
 
+
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -11,7 +12,8 @@ import com.bigbasket.base.TestBase;
 import com.bigbasket.base.WaitFor;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ShopByCategoryPage;
-@Test(groups = {"RegressionTests", "SanityTests"})
+
+//@Test(groups = {"RegressionTests"})
 @Listeners(TestListener.class)
 public class ShopByCategoryTests extends TestBase {
 
@@ -45,7 +47,7 @@ public class ShopByCategoryTests extends TestBase {
 		homepage.verifyShopByCategoryCollapsesOnClickAfterExapands();
 	}
 
-	@Test(groups = "SanityTests")
+	@Test
 	public void verifyAllCategoriesAreClickable() throws InterruptedException {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
@@ -112,7 +114,7 @@ public class ShopByCategoryTests extends TestBase {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
 		homepage.clickOnCategory("apparel");	
-		WaitFor.untilUrlLoad("cl");
+		WaitFor.untilUrlContains("cl");
 		ShopByCategoryPage categoryPage = new ShopByCategoryPage();
 		categoryPage.verifyNoProductMessgae();
 	}

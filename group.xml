@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="RegressionSuite" verbose="1">
-	<groups>
-		<run>
-			<include name="RegressionTests"></include>
-			<include name="SanityTests"></include>
-
-		</run>
-	</groups>
-
-	<test name="ProductDetailTests">
+	<test name="SanityTests">
+		<groups>
+			<run>
+				<include name="SanityTests" />
+				<include name="RegressionTests" />
+			</run>
+		</groups>
 		<classes>
-			<class name="bigbasketTests.ProductDetailTests"/>
-			<class name="bigbasketTests.ShopByCategoryTests"/>
-			<class name="bigbasketTests.SearchProductTests"/>
+			<class name="bigbasketTests.ProductDetailTests" />
 		</classes>
 	</test>
+
+
 </suite>

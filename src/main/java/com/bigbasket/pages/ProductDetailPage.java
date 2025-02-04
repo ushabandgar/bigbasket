@@ -32,11 +32,11 @@ public class ProductDetailPage {
 	}
 
 	public void switchWindowOnproductDetailPage() {
-		keyword.switchToWindowByTitle("Buy Amul Taaza Milk Online at Best Price of Rs 56 - bigbasket");
+		keyword.switchToWindowByTitle("Buy Amul Taaza Milk Online at Best");
 	}
 
 	public void verifyAfterClickOnProductThenProductUrlTitleChanged() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		WaitFor.untilUrlContains("https://www.bigbasket.com/pd/");
 		String currentTitle =Keyword.driver.getTitle();
 		System.out.println("Current Title: " + currentTitle);
 		assertTrue(currentTitle.contains("Buy Amul Taaza Milk Online at Best Price"),
@@ -44,7 +44,6 @@ public class ProductDetailPage {
 	}
 	
 	public void verifyAfterClickOnProductThenProductUrlChanged() {
-		
 		String currentURL = Keyword.driver.getCurrentUrl();
 		System.out.println("Current URL: " + currentURL);
 		assertTrue(currentURL.contains("https://www.bigbasket.com/pd/"),
@@ -53,13 +52,13 @@ public class ProductDetailPage {
 	}
 
 	public void CheckProductImageToverifyImageloadingSuccessfully() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		WaitFor.untilUrlContains("https://www.bigbasket.com/pd");
 		WaitFor.visibilityOfElement(productImage);
 		assertTrue(productImage.isDisplayed(), "Product image is not displayed, page might not be fully loaded.");
 	}
 
 	public void getexpectedProductDetailTitleText() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd/");
+		WaitFor.untilUrlContains("https://www.bigbasket.com/pd/");
 		System.out.println("Expected Product Title: " + expectedProductTitleText.getText());
 	}
 
@@ -69,7 +68,7 @@ public class ProductDetailPage {
 	}
 
 	public void getExpectedProductDetailPagePrice() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		WaitFor.untilUrlContains("https://www.bigbasket.com/pd");
 		WaitFor.visibilityOfElement(expectedproductprice);
 		String expectedproductPrice = expectedproductprice.getText();
 		System.out.println("Expected Product Title: " + expectedproductPrice);
@@ -81,7 +80,7 @@ public class ProductDetailPage {
 	}
 
 	public void CheckProductUrlLoadingSuccessfully() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd/");
+		WaitFor.untilUrlContains("https://www.bigbasket.com/pd/");
 		String currentUrl = Keyword.driver.getCurrentUrl();
 		System.out.println(currentUrl);
 		System.out.println("Product Page loaded successfully! product image visible.");
@@ -90,7 +89,7 @@ public class ProductDetailPage {
 	}
 
 	public void hoverOnImage() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		WaitFor.untilUrlContains("https://www.bigbasket.com/pd");
 		WaitFor.elementToBeVisible(productImage); 
 		keyword.mouseHoverOn(productImage);
 
@@ -102,11 +101,11 @@ public class ProductDetailPage {
 
 
 	public void verifyclickFucntinalityOnProductImageGallaryOnebyOne() throws InterruptedException {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com");
+		WaitFor.untilUrlContains("https://www.bigbasket.com");
 		for (int i = 0; i <= 4; i++) {
 			String imageSelector = "#thumb-" + i;
 			List<WebElement> productImages = 
-					WaitFor.visibilityOfElements(Keyword.driver.findElements(By.cssSelector(imageSelector)));
+					WaitFor.waitForAllElementsVisible(Keyword.driver.findElements(By.cssSelector(imageSelector)));
 			for (WebElement images : productImages) {
 				Thread.sleep(2000);
 				WaitFor.elementToBeClickable(images);
@@ -127,7 +126,7 @@ public class ProductDetailPage {
 	
 	
 	public void verifyAfterclickOnProductPackSizeFor500mlProductPriceWillChange() {
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/pd");
+		WaitFor.untilUrlContains("https://www.bigbasket.com/pd");
 		WaitFor.visibilityOfElement(packsize500ml);
 		String actualpacksizePrice= packsize500ml.getText();
 	    System.out.println("actualpacksizePrice: "+actualpacksizePrice); 
