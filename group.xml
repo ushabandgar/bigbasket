@@ -10,6 +10,8 @@
 		</groups>
 		<classes>
 			<class name="bigbasketTests.ProductDetailTests" />
+			<class name="bigbasketTests.SearchProductTests" />
+			<class name="bigbasketTests.ShopByCategoryTests" />
 		</classes>
 	</test>
 

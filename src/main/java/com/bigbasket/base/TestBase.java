@@ -4,7 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class TestBase {
-	private Keyword keyword = new Keyword();  // Ensure keyword is non-static to avoid shared WebDriver instances
+	private Keyword keyword = new Keyword();
 
     @BeforeMethod(groups = { "RegressionTests", "SanityTests" })
     public void setUp() throws Exception {
@@ -13,9 +13,9 @@ public class TestBase {
         keyword.maximizeBrowser();
     }
 
-    @AfterMethod
+    @AfterMethod(groups = { "RegressionTests", "SanityTests" })
     public void tearDown() {
-        keyword.quitBrowser(); // Ensures browser is properly closed after each test
+        keyword.quitBrowser(); 
     }
 
 }

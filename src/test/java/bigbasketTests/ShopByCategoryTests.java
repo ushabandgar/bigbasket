@@ -67,7 +67,7 @@ public class ShopByCategoryTests extends TestBase {
 	}
 
 	//working on this test case don't review it
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyProductCountMatchesActualNumberProductsAvailableUnderThatCategory() throws InterruptedException {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
@@ -109,12 +109,12 @@ public class ShopByCategoryTests extends TestBase {
 		Thread.sleep(3000);
 		homepage.verifyNavigatedToHomePageFromCategoryPage();
 	}
-	@Test
+	@Test(groups = "SanityTests")
 	public void verifyNoProductMessageWhenCategoryDoesNotHaveProducts() throws InterruptedException {
 		HomePage homepage = new HomePage();
 		homepage.clickOnShopByCategoryMenu();
 		homepage.clickOnCategory("apparel");	
-		WaitFor.untilUrlContains("cl");
+		WaitFor.untilUrlLoad("cl");
 		ShopByCategoryPage categoryPage = new ShopByCategoryPage();
 		categoryPage.verifyNoProductMessgae();
 	}

@@ -47,7 +47,7 @@ public class ShopByCategoryPage {
 	}
 	public void clickOnHomeButton(){
 		keyword.clickOn(HomeButtonOnCategoryPage);
-		WaitFor.untilUrlContains("https://www.bigbasket.com/");
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/");
 	}
 
 	public String getNoProductMessage() {

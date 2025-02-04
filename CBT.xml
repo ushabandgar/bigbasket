@@ -8,9 +8,8 @@
 			<class name="bigbasketTests.ProductDetailTests" />
 			<class name="bigbasketTests.ShopByCategoryTests" />
 			<class name="bigbasketTests.SearchProductTests" />
-			<class name="com.bigbasket.base.TestBase" />
 		</classes>
-	</test> 
+	</test>
 
 	<test thread-count="5" name="FirefoxTest">
 		<parameter name="browser-name" value="Firefox"></parameter>
@@ -18,9 +17,8 @@
 			<class name="bigbasketTests.ProductDetailTests" />
 			<class name="bigbasketTests.ShopByCategoryTests" />
 			<class name="bigbasketTests.SearchProductTests" />
-			<class name="com.bigbasket.base.TestBase" />
 		</classes>
-	</test> 
+	</test>
 
 	<test thread-count="5" name="EdgeTest">
 		<parameter name="browser-name" value="edge"></parameter>
@@ -28,7 +26,6 @@
 			<class name="bigbasketTests.ProductDetailTests" />
 			<class name="bigbasketTests.ShopByCategoryTests" />
 			<class name="bigbasketTests.SearchProductTests" />
-			<class name="com.bigbasket.base.TestBase" />
 		</classes>
-	</test> 
+	</test>
 </suite> 

@@ -45,15 +45,15 @@ public class ProductSearchPage {
 	    System.out.println("driver switch on Product search page");
 	}
 
-	public void getActualSearchProductTitleText() {
-		WaitFor.untilUrlContains("https://www.bigbasket.com/ps");
+	public void getActualSearchProductTitleText() throws InterruptedException {
+		Thread.sleep(1000);;
 		WaitFor.visibilityOfElement(actualProductTitleText);
 		String  actualProductTitleTest = actualProductTitleText.getText();
 		System.out.println("Actual Product Title: " + actualProductTitleTest);
 	}
 
 	public void getActualSearchProductTitlePrice() {
-		WaitFor.untilUrlContains("https://www.bigbasket.com/ps");
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps");
 		WaitFor.visibilityOfElement(actualProductPrice);
 		String  actualProductprice = actualProductPrice.getText();
 		System.out.println("Actual Product Title: " +actualProductprice);

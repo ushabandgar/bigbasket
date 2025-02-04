@@ -229,7 +229,7 @@ public class HomePage {
 	}
 	
 	public void sendProductName() {
-		WaitFor.untilUrlContains("https://www.bigbasket.com/");
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/");
 		WaitFor.elementToBeClickable(searchText);
 		searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
 		searchText.sendKeys(Keys.ENTER);
@@ -237,7 +237,7 @@ public class HomePage {
 
 	
 	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab()  {
-	    WaitFor.untilUrlContains("/ps");
+	    WaitFor.untilUrlLoad("/ps");
 	    String currentURL = Keyword.driver.getCurrentUrl();
 	    keyword.print("Current URL: " + currentURL);
 	    assertTrue(currentURL.contains("/ps"), "URL is incorrect after search");
