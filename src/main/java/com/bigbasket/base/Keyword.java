@@ -3,7 +3,6 @@ package com.bigbasket.base;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -15,15 +14,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-
-import com.beust.jcommander.Parameter;
 import com.bigbasket.pages.HomePage;
 
 public class Keyword {
 
 	public static RemoteWebDriver driver;
-	@Parameters("browser-name")
 
+	@Parameters("browser-name")
 	public void openBrowser(@Optional String browserName) {
 		if (browserName == null) {
 			System.out.println("Launching Chrome by default");
@@ -45,7 +42,7 @@ public class Keyword {
 	}
 
 	public void launchUrl(String url) {
-		driver.get(url);
+			driver.get(url);
 	}
 
 	public void clickOn(WebElement element) {
@@ -53,24 +50,21 @@ public class Keyword {
 	}
 
 	public void closeBrowser() {
-		driver.close();
+			driver.close();
 	}
 
 	public void quitBrowser() {
-		driver.quit();
+		driver.quit(); // This properly closes the browser and ends the WebDriver session
 	}
 
 	public void maximizeBrowser() {
 		driver.manage().window().maximize();
-
 	}
 
 	public void print(String string) {
 		System.out.println(string);
-
 	}
 
-	// it take webelement and text
 	public static void sendkeys(WebElement element, String text) {
 		element.sendKeys(text);
 	}
@@ -83,7 +77,6 @@ public class Keyword {
 	public void mouseHoverOn(WebElement element) {
 		Actions actions = new Actions(Keyword.driver);
 		actions.moveToElement(element).perform();
-
 	}
 
 	public void switchToChildWindowHandle() {
