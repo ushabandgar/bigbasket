@@ -17,7 +17,7 @@ public class TestBase {
 	@AfterMethod(groups = "RegressionTests")
 	public void tearDown() {
 	    if (Keyword.driver != null) {
-	    	keyword.closeBrowser();
+	    	keyword.quitBrowser();
 	    }
 	}
 	

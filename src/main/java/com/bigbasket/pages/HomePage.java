@@ -177,7 +177,7 @@ public class HomePage {
 	}
 
 	public void sendProductName() {
-		WaitFor.elementTobeVisible(searchText);
+		//WaitFor.elementTobeVisible(searchText);
 		searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
 		searchText.sendKeys(Keys.ENTER);
 		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps/");
