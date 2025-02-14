@@ -169,8 +169,15 @@ public class HomePage {
 		softlyAssert.assertEquals(actualCategoryNames, expectedCategoryNames);
 		softlyAssert.assertAll();
 	}
-	
-	
+
+
+	public void verifyUrlAfterSearch() {
+		String currentURL = Keyword.driver.getCurrentUrl();
+		keyword.print("Current URL: " + currentURL);
+		assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
+
+	}
+
 	public void verifyShopByCategoryCollapsesOnClickAfterExapands() {
 		String classNameAfterExapnd = shopByCategoryMenu.getAttribute("class");
 		clickOnShopByCategoryMenu();
