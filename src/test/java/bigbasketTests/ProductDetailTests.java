@@ -1,41 +1,34 @@
 package bigbasketTests;
 import org.testng.annotations.Test;
-import com.bigbasket.base.*;
+import com.bigbasket.base.TestBase;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
+public class ProductDetailTests extends TestBase {
 
-//@Test(groups = {"RegressionTests", "SanityTests"})
-public class ProductDetailTests extends TestBase{
-
-	@Test (groups = "SanityTests")
-	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() {
+	@Test(priority = 1, groups = "SanityTests")
+	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab() throws InterruptedException {
 		HomePage homePage = new HomePage();
-		homePage.clickOnSearchText();
-		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
+		homePage.searchForProduct();
+		homePage.verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab();
 	}
 
-	@Test
-	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() {
+	@Test(priority = 2, groups = "RegressionTests")
+	public void verifyWhenUserClickOnProductThenProductUrlTitleChanged() throws InterruptedException {
 		HomePage homePage = new HomePage();
-		homePage.clickOnSearchText();
-		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
+		homePage.searchForProduct();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
-        productSearchPage.clickOnProduct();
-		productSearchPage.switchDriverOnProductSearchPage();
+		productSearchPage.clickOnProduct();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.verifyAfterClickOnProductThenProductUrlTitleChanged();
 	}
 
-	@Test
+	@Test(priority = 3)
 	public void verifyWhenUserClickOnProductThenProductPageURlchanged() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -44,7 +37,7 @@ public class ProductDetailTests extends TestBase{
 
 	}
 
-	@Test
+	@Test(priority = 4)
 	public void verifyWhenUserClickOnProductThenProductUrlLoadFully() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
@@ -57,9 +50,10 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.CheckProductUrlLoadingSuccessfully();
 		System.out.println("Product Page loaded successfully! product image visible.");
 	}
-	
-	@Test
-	public void verifyWhenUserClickOnProductShouldDisplaySameProductTitleOnProductDetailPage() {
+
+	@Test(priority = 5,groups = "SanityTests")
+	public void verifyWhenUserClickOnProductShouldDisplaySameProductTitleOnProductDetailPage()
+			throws InterruptedException {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
@@ -70,10 +64,10 @@ public class ProductDetailTests extends TestBase{
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.getexpectedProductDetailTitleText();
-	    productDetailPage.verifyActualAndExpectedProductText();
+		productDetailPage.verifyActualAndExpectedProductText();
 	}
-	
-	@Test
+
+	@Test(priority = 6,groups = "SanityTests")
 	public void verifyWhenUserClickOnProductShouldDisplaySameProductPriceOnProductDetailPage() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
@@ -85,27 +79,27 @@ public class ProductDetailTests extends TestBase{
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.getExpectedProductDetailPagePrice();
-	    productDetailPage.verifyActualAndExpectedProductPrice();
+		productDetailPage.verifyActualAndExpectedProductPrice();
 	}
-	@Test
-	public void verifyProductImageDisplayProperlyOnProductDetailPage(){
+
+	@Test(priority = 7)
+	public void verifyProductImageDisplayProperlyOnProductDetailPage() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
-		//productSearchPage.switchDriverOnProductSearchPage();
+		// productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
-		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();	
+		productDetailPage.CheckProductImageToverifyImageloadingSuccessfully();
 	}
 
-	@Test
+	@Test(priority = 8)
 	public void verifyHoverFeatureWorksWhenUserHoversOnProductImage() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -114,28 +108,25 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.hoverOnImage();
 		productDetailPage.verifyHoverFeatureWorks();
 	}
-	
-	
-	@Test
+
+	@Test(priority = 9)
 	public void verifyMultipleImagesForProductAreClikable() throws InterruptedException {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
 		ProductDetailPage productDetailPage = new ProductDetailPage();
 		productDetailPage.switchWindowOnproductDetailPage();
-	    productDetailPage.verifyclickFucntinalityOnProductImageGallaryOnebyOne();
+		productDetailPage.verifyclickFucntinalityOnProductImageGallaryOnebyOne();
 	}
 
-	@Test
-	public void verifyGallaryImagesForProductAreHighQuality() throws InterruptedException{
+	@Test(priority = 10)
+	public void verifyGallaryImagesForProductAreHighQuality() throws InterruptedException {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -144,13 +135,12 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.verifyclickFucntinalityOnProductImageGallaryOnebyOne();
 		productDetailPage.verifyGallaryImageQuality();
 	}
-	
-	@Test(groups = "SanityTests")
+
+	@Test(priority = 11,groups = "SanityTests")
 	public void VerifyThePriceFormattingFollowTheStandardCurrenctSymbolLike₹() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -159,13 +149,12 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.getExpectedProductDetailPagePrice();
 		productDetailPage.verifyPriceContainCurrencySymbolLike₹();
 	}
-	
-	@Test(groups = "SanityTests")
+
+	@Test(priority = 12,groups = "SanityTests")
 	public void verifyProductPriceChangeWhileSelectingPackSize() {
 		HomePage homePage = new HomePage();
 		homePage.clickOnSearchText();
 		homePage.sendProductName();
-		homePage.verifyUrlAfterSearch();
 		ProductSearchPage productSearchPage = new ProductSearchPage();
 		productSearchPage.clickOnProduct();
 		productSearchPage.switchDriverOnProductSearchPage();
@@ -173,5 +162,5 @@ public class ProductDetailTests extends TestBase{
 		productDetailPage.switchWindowOnproductDetailPage();
 		productDetailPage.verifyAfterclickOnProductPackSizeFor500mlProductPriceWillChange();
 	}
-	
+
 }

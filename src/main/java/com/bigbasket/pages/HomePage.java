@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.bigbasket.base.WaitFor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -168,21 +169,7 @@ public class HomePage {
 		softlyAssert.assertEquals(actualCategoryNames, expectedCategoryNames);
 		softlyAssert.assertAll();
 	}
-	
-	public void clickOnSearchText() {
-		WaitFor.visibilityOfElement(searchText);
-		searchText.click();
-		System.out.println("Clicked on search text field.");
 
-	}
-
-	public void sendProductName() {
-		//WaitFor.elementTobeVisible(searchText);
-		searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
-		searchText.sendKeys(Keys.ENTER);
-		WaitFor.untilUrlLoad("https://www.bigbasket.com/ps/");
-
-	}
 
 	public void verifyUrlAfterSearch() {
 		String currentURL = Keyword.driver.getCurrentUrl();
@@ -190,7 +177,6 @@ public class HomePage {
 		assertTrue(currentURL.contains("https://www.bigbasket.com/ps"));
 
 	}
-
 
 	public void verifyShopByCategoryCollapsesOnClickAfterExapands() {
 		String classNameAfterExapnd = shopByCategoryMenu.getAttribute("class");
@@ -240,4 +226,36 @@ public class HomePage {
 		String urlAfterNavigationToHome = Keyword.driver.getCurrentUrl();
 		assertTrue(urlAfterNavigationToHome.equals("https://www.bigbasket.com/"));
 	}
+	
+	
+	public void clickOnSearchText() {
+		WaitFor.elementToBeClickable(searchText);
+		searchText.click();
+		System.out.println("Clicked on search text field.");
+
+	}
+	
+	public void sendProductName() {
+		WaitFor.untilUrlLoad("https://www.bigbasket.com/");
+		WaitFor.elementToBeClickable(searchText);
+		searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
+		searchText.sendKeys(Keys.ENTER);
+	}
+
+	
+	public void verifyWhenUserSearchProductAfterUrlWillChangedOnSameTab()  {
+	    WaitFor.untilUrlLoad("/ps");
+	    String currentURL = Keyword.driver.getCurrentUrl();
+	    keyword.print("Current URL: " + currentURL);
+	    assertTrue(currentURL.contains("/ps"), "URL is incorrect after search");
+	}
+
+	public void searchForProduct() throws InterruptedException {
+		WaitFor.visibilityOfElement(searchText);
+	    searchText.click();
+	    searchText.sendKeys("Amul Taaza Milk, 1 L Pouch");
+	    searchText.sendKeys(Keys.ENTER);
+	}
+
+	
 }
