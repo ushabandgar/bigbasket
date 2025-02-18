@@ -1,9 +1,14 @@
 package bigbasketTests;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+import com.bigbasket.Listeners.TestListener;
 import com.bigbasket.base.TestBase;
 import com.bigbasket.pages.HomePage;
 import com.bigbasket.pages.ProductDetailPage;
 import com.bigbasket.pages.ProductSearchPage;
+
+@Listeners(TestListener.class)
 public class ProductDetailTests extends TestBase {
 
 	@Test(priority = 1, groups = "SanityTests")
