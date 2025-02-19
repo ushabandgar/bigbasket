@@ -2,6 +2,7 @@ package com.bigbasket.base;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import com.bigbasket.Utilities.TestUtils;
 
@@ -14,7 +15,8 @@ public class TestBase {
         keyword.launchUrl(TestUtils.getURL());
         keyword.maximizeBrowser();
     }
-
+    
+    @Parameters("browser-name")
     @AfterMethod(groups = { "RegressionTests", "SanityTests" })
     public void tearDown() {
         keyword.quitBrowser(); 
