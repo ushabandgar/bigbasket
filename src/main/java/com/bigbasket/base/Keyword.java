@@ -12,16 +12,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import com.bigbasket.pages.HomePage;
 
 public class Keyword {
 
 	public static RemoteWebDriver driver;
 
-	@Parameters("browser-name")
-	public void openBrowser(@Optional String browserName) {
+	public void openBrowser(String browserName) {
 		if (browserName == null) {
 			System.out.println("Launching Chrome by default");
 			driver = new ChromeDriver();
