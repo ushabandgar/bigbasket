@@ -11,17 +11,12 @@ public class TestUtils {
 	public static String getBrowserName() throws IOException {
 
 		FileInputStream fis = new FileInputStream(filepath);
-
 		properties.load(fis);
-
 		String browserName = properties.getProperty("browser_name");
-		System.out.println("Launched Browser: " + browserName);
-
 		return browserName;
 	}
 	public static String getURL() throws IOException {
 		FileInputStream fis = new FileInputStream(filepath);
-
 		properties.load(fis);
 
 		String url = properties.getProperty("url");
